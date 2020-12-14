@@ -5,7 +5,8 @@ module.exports = {
     getThreadDetails,
     create,
     updateThread,
-    deleteOne
+    deleteOne,
+    addReply
 }
 
 function getThreads(req, res) {
@@ -39,6 +40,9 @@ function deleteOne(req, res) {
 }
 
 function addReply(req, res) {
-    Thread.findById(req.params.id)
-    
+    const thread = Thread.findById(req.params.id)
+    thread.replies.push(req.body)
+    Thread.findByIdAndUpdate(req.params.id, thread)
+    .then(thread => res.json(thread))
+    .catch(err => res.json(err))
 }
