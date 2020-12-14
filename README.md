@@ -1,1 +1,1 @@
-# jwt-auth-template-with-hooks
+# GA Motivate
