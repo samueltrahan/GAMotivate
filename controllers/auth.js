@@ -6,7 +6,8 @@ const SECRET = process.env.SECRET;
 module.exports = {
   signup,
   login,
-  show
+  show,
+  getAll
 };
 
 async function signup(req, res) {
@@ -50,5 +51,10 @@ function createJWT(user) {
 
 function show(req, res) {
   User.findById(req.params.id)
-  .then(res => res.json());
+  .then(user => res.json(user));
+}
+
+function getAll(req, res) {
+  User.find({})
+  .then(user => res.json(user))
 }
