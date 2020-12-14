@@ -6,6 +6,7 @@ module.exports = {
     create,
     update:updatePost,
     deleteOne,
+    addQuestion
 }
 
 function getPosts(req, res) {
@@ -37,4 +38,8 @@ function deleteOne(req, res) {
     Post.findByIdAndDelete(req.params.id)
     .then(post => res.json(post))
     .catch(err => res.json(err))
+}
+
+function addQuestion(req, res) {
+    
 }
