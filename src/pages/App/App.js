@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 
 import Posts from '../../components/Posts/Posts';
-
+import NavBar from '../../components/NavBar/NavBar';
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
 

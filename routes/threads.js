@@ -2,10 +2,8 @@
 const express = require("express");
 const router = express.Router();
 
-const postCtrl = require("../controllers/posts");
+const threadCtrl = require("../controllers/threads");
 
-router.get("", postCtrl.getPosts);
-router.get("/:id", postCtrl.getPostDetails);
 
 // router.use(require('../config/auth'))
 
