@@ -1,0 +1,27 @@
+.thread {
+  margin: 10px 80px;
+  display: flex;
+  flex-direction: row;
+}
+
+.user-info {
+  width: 150px;
+  height: 300px;
+  background-color: green;
+}
+
+.thread-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.thread-container > h1 {
+  margin: 0;
+}
+
+.thread-container > textarea {
+  border-radius: 5px;
+  width: 100%;
+  height: 50%;
+}

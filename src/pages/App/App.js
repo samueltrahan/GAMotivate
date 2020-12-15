@@ -8,6 +8,7 @@ import Posts from "../../components/Posts/Posts";
 
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
+import ThreadPage from "../ThreadPage/ThreadPage";
 
 import userService from "../../services/userService";
 
@@ -28,7 +29,6 @@ const App = () => {
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
-      <Posts />
       <Switch>
         <Route
           exact
@@ -58,7 +58,21 @@ const App = () => {
         <Route
           exact
           path="/posts"
-          render={() => <PostForm user={user} />}
+          render={() => (
+            <div>
+              <PostForm user={user} />
+              <Posts />
+            </div>
+          )}
+        ></Route>
+        <Route
+          exact
+          path="/thread"
+          render={() => (
+            <div>
+              <ThreadPage />
+            </div>
+          )}
         ></Route>
       </Switch>
     </>

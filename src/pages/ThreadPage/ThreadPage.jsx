@@ -1,11 +1,18 @@
 import React from "react";
+import "./ThreadPage.css";
 
-const Thread = (props) => {
+const ThreadPage = (props) => {
   return (
     <>
-      <h1>Thread Page</h1>
+      <section className="thread">
+        <div className="user-info">User Info</div>
+        <div className="thread-container">
+          <h1>GA MOTIVATE</h1>
+          <textarea placeholder="Post a question or something that motivates you"></textarea>
+        </div>
+      </section>
     </>
   );
 };
 
-export default Thread;
+export default ThreadPage;

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Post.css";
 
 const Post = (props) => {
@@ -15,6 +16,7 @@ const Post = (props) => {
           <button>Ask</button>
           <button>Motivate</button>
         </div>
+        <Link to="/thread">Thread</Link>
       </section>
     </>
   );
