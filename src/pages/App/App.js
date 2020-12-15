@@ -39,7 +39,6 @@ const App = () => {
 
   return (
     <>
-      <NavBar user={user} handleLogout={handleLogout} />
       <Switch>
         <Route exact path="/login" render={({history}) => 
           <>
@@ -61,6 +60,7 @@ const App = () => {
         
         <Route exact path="/posts" render={() => 
           <div>
+            <NavBar user={user} handleLogout={handleLogout} />
             <Posts user={user} posts={posts} getPosts={getPosts}/>
           </div>
         }>
