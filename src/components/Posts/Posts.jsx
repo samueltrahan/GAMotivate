@@ -1,33 +1,22 @@
 import React, { useEffect, useState } from "react"
 import * as postsAPI from "../../services/posts-api"
+import './PostForm.css';
 import Post from "../Post/Post"
 
 import "./PostForm.css"
 
-const Posts = ({ user }) => {
-    const [posts, setPosts] = useState([])
+const Posts = ({ user, posts, getPosts }) => {
     const [message, setMessage] = useState({
         message: "",
         postedBy: user._id,
         cohort: user.cohort,
     })
 
-    useEffect(() => {
-        initializePost()
-        getPosts()
-    }, [])
-
-    const initializePost = () => {
+    const initializeNewPost = () => {
         setMessage({
             ...message,
             message: "",
         })
-    }
-
-    const getPosts = async () => {
-        const postData = await postsAPI.getAll()
-        console.log(postData)
-        setPosts(postData.reverse())
     }
 
     const handleChange = (e) => {
@@ -41,9 +30,8 @@ const Posts = ({ user }) => {
         e.preventDefault()
         if (message.message) {
             try {
-                const post = await postsAPI.create(message)
-                console.log(post)
-                initializePost()
+                await postsAPI.create(message)
+                initializeNewPost()
                 getPosts()
             } catch (err) {
                 console.log(err)
@@ -58,21 +46,26 @@ const Posts = ({ user }) => {
     return (
         <>
             {user ? (
-                <form onSubmit={handleMessageSubmit} className="post-form">
+                <div className="post-form">
+                <form onSubmit={handleMessageSubmit} >
+                <h1 className="post-title">MOTIVATE</h1>
                     <div className="main-post">
-                        <input
+                        <textarea
                             onChange={handleChange}
                             className="post-input"
                             type="text"
                             placeholder="What's up?"
                             name="message"
                             value={message.message}
-                        ></input>
+                        ></textarea>
+                    </div>
+                    <div className="post-btn-section">
                         <button className="post-btn" type="submit">
                             Post
                         </button>
                     </div>
                 </form>
+                </div>
             ) : (
                 ""
             )}
