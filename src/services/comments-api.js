@@ -1,7 +1,7 @@
 const BASE_URL= '/api/comments';
 
-  export function create(comment) {
-    return fetch(BASE_URL, {
+  export function create(comment, postId) {
+    return fetch(`${BASE_URL}/${postId}`, {
       method: 'POST',
       headers: {'content-type': 'application/json'},
       body: JSON.stringify(comment)
