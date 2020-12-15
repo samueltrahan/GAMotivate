@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Route, Switch } from 'react-router-dom';
 
 import NavBar from "../../components/NavBar/NavBar";
+import PostForm from '../../components/PostForm/PostForm';
 
 import LoginPage from '../LoginPage/LoginPage';
 import SignupPage from '../SignupPage/SignupPage';
@@ -47,6 +48,10 @@ const App = () => {
             />
           </>
         }></Route>
+        <Route exact path="/posts" render={() => 
+        <PostForm />
+        }>
+        </Route>
       </Switch>
     </>
   );

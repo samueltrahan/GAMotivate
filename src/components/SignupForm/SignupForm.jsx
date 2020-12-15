@@ -22,7 +22,7 @@ const SignupForm = ({history, handleSignupOrLogin, updateMessage}) => {
     try {
       await userService.signup(signupInfo);
       handleSignupOrLogin();
-      history.push('/');
+      history.push('/posts');
     } catch (err) {
       updateMessage(err.message);
     }
