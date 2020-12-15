@@ -15,6 +15,7 @@ const Post = ({ post }) => {
           <div className="message">
             <p>{post.message}</p>
           </div>
+          <Link to={`/post/${post._id}`}>Reply</Link>
         </section>
       ) : (
         ""

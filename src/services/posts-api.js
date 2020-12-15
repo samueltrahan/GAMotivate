@@ -7,7 +7,7 @@ export function getAll() {
 export function create(post) {
   return fetch(BASE_URL, {
     method: "POST",
-    headers: { "content-type": "application/json" },
+    hseaders: { "content-type": "application/json" },
     body: JSON.stringify(post),
   }).then((res) => res.json());
 }

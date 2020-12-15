@@ -6,6 +6,7 @@ import Posts from "../../components/Posts/Posts";
 
 import LoginLandingPage from "../LandingPage/LoginLandingPage";
 import SignUpLandingPage from "../LandingPage/SignUpLandingPage";
+import PostPage from "../PostPage/PostPage";
 
 import * as postsAPI from "../../services/posts-api";
 import userService from "../../services/userService";
@@ -66,6 +67,19 @@ const App = () => {
 
         <Route
           exact
+          path="/signup"
+          render={({ history }) => (
+            <>
+              <SignUpLandingPage
+                history={history}
+                handleSignupOrLogin={handleSignupOrLogin}
+              />
+            </>
+          )}
+        ></Route>
+
+        <Route
+          exact
           path="/posts"
           render={() => (
             <div>
@@ -78,6 +92,11 @@ const App = () => {
           exact
           path="/user/:id"
           render={() => <UserPage user={user} />}
+        ></Route>
+        <Route
+          exact
+          path="/post/:id"
+          render={() => <PostPage user={user} posts={posts} />}
         ></Route>
       </Switch>
     </>
