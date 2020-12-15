@@ -4,7 +4,7 @@ module.exports = {
     getThreads,
     getThreadDetails,
     create,
-    updateThread,
+    update,
     deleteOne,
     addReply
 }
@@ -27,7 +27,7 @@ function create(req, res) {
     .catch(err => res.json(err))
 }
 
-function updateThread(req, res) {
+function update(req, res) {
     Thread.findByIdAndUpdate(req.params.id, req.body, {new:true})
     .then(thread => res.json(thread))
     .catch(err => res.json(err))
