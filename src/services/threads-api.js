@@ -7,7 +7,7 @@ export function getAll() {
   
   export function create(thread) {
     return fetch(BASE_URL, {
-      method: 'thread',
+      method: 'POST',
       headers: {'content-type': 'application/json'},
       body: JSON.stringify(thread)
     }).then(res => res.json());
