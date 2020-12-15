@@ -9,7 +9,11 @@ const Post = ({ post }) => {
                     <div>
                         <img src="" alt="avatar" />
                         <p>{post.postedBy.name}</p>
-                        <p>{post.cohort ? post.cohort : "no cohort"}</p>
+                        <p>
+                            {post.postedBy.cohort
+                                ? post.postedBy.cohort
+                                : "no cohort"}
+                        </p>
                     </div>
                     <div className="message">
                         <p>{post.message}</p>

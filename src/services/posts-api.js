@@ -14,7 +14,6 @@ export function getAll() {
   }
   
   export function update(post) {
-    
     return fetch(`${BASE_URL}/${post._id}`, {
       method: 'PUT',
       headers: {'content-type': 'application/json'},
