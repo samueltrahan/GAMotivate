@@ -6,6 +6,7 @@ import Posts from '../../components/Posts/Posts';
 
 import LoginLandingPage from '../LandingPage/LoginLandingPage';
 import SignUpLandingPage from '../LandingPage/SignUpLandingPage'
+import PostPage from '../PostPage/PostPage'
 
 import * as postsAPI from "../../services/posts-api"
 import userService from "../../services/userService";
@@ -66,6 +67,10 @@ const App = () => {
         </Route>
         <Route exact path="/user/:id" render={() => 
           <UserPage user={user}/>
+                  }>
+        </Route>
+        <Route exact path="/post/:id" render={() => 
+          <PostPage user={user} posts={posts}/>
                   }>
         </Route>
       </Switch>

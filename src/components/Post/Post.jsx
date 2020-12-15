@@ -1,10 +1,11 @@
 import React from "react"
+import {Link} from "react-router-dom"
 import "./Post.css"
 
 const Post = ({ post }) => {
     return (
         <>
-        console.log(post)
+        
             {post ? (
                 <section className="post">
                     <div>
@@ -18,9 +19,8 @@ const Post = ({ post }) => {
                     </div>
                     <div className="message">
                         <p>{post.message}</p>
-                        <button>Ask</button>
-                        <button>Motivate</button>
                     </div>
+                        <Link to={`/post/${post._id}`} >Reply</Link>
                 </section>
             ) : (
                 ""
