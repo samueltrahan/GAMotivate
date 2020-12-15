@@ -4,50 +4,38 @@ import Post from "../Post/Post";
 
 import "./PostForm.css";
 
-const Posts = ({ user }) => {
-  const [posts, setPosts] = useState([]);
-  const [message, setMessage] = useState({
-    message: "",
-    postedBy: user._id,
-    cohort: user.cohort,
-  });
+const Posts = ({ user, posts, getPosts }) => {
+    const [message, setMessage] = useState({
+        message: "",
+        postedBy: user._id,
+        cohort: user.cohort,
+    })
 
-  useEffect(() => {
-    initializePost();
-    getPosts();
-  }, []);
+    const initializeNewPost = () => {
+        setMessage({
+            ...message,
+            message: "",
+        })
+    }
 
-  const initializePost = () => {
-    setMessage({
-      ...message,
-      message: "",
-    });
-  };
+    const handleChange = (e) => {
+        setMessage({
+            ...message,
+            [e.target.name]: e.target.value,
+        })
+    }
 
-  const getPosts = async () => {
-    const postData = await postsAPI.getAll();
-    console.log(postData);
-    setPosts(postData.reverse());
-  };
-
-  const handleChange = (e) => {
-    setMessage({
-      ...message,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleMessageSubmit = async (e) => {
-    e.preventDefault();
-    if (message.message) {
-      try {
-        const post = await postsAPI.create(message);
-        console.log(post);
-        initializePost();
-        getPosts();
-      } catch (err) {
-        console.log(err);
-      }
+    const handleMessageSubmit = async (e) => {
+        e.preventDefault()
+        if (message.message) {
+            try {
+                await postsAPI.create(message)
+                initializeNewPost()
+                getPosts()
+            } catch (err) {
+                console.log(err)
+            }
+        }
     }
   };
 
