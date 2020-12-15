@@ -6,7 +6,7 @@ import Posts from '../../components/Posts/Posts';
 
 import LoginLandingPage from '../LandingPage/LoginLandingPage';
 import SignUpLandingPage from '../LandingPage/SignUpLandingPage'
-import SignupPage from "../SignupPage/SignupPage";
+
 
 
 import * as postsAPI from "../../services/posts-api"
