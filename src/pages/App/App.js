@@ -5,8 +5,8 @@ import NavBar from "../../components/NavBar/NavBar";
 
 import Posts from '../../components/Posts/Posts';
 
-import LandingPage from '../../pages/LandingPage/LandingPage';
-import LoginPage from "../LoginPage/LoginPage";
+import LoginLandingPage from '../LandingPage/LoginLandingPage';
+import SignUpLandingPage from '../LandingPage/SignUpLandingPage'
 import SignupPage from "../SignupPage/SignupPage";
 
 
@@ -43,7 +43,7 @@ const App = () => {
       <Switch>
         <Route exact path="/login" render={({history}) => 
           <>
-          <LandingPage 
+          <LoginLandingPage 
               history={history}
               handleSignupOrLogin={handleSignupOrLogin}
               />
@@ -52,7 +52,7 @@ const App = () => {
 
         <Route exact path="/signup" render={({history}) => 
           <>
-            <SignupPage 
+            <SignUpLandingPage
               history={history}
               handleSignupOrLogin={handleSignupOrLogin}
             />
