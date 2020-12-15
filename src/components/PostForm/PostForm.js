@@ -1,13 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './PostForm.css';
 import * as postsAPI from '../../services/posts-api'
 
-export default function PostForm() {
+export default function PostForm({user}) {
     const [message, setMessage] = useState({message: '',  postedBy: '', cohort: ''})
 
     const handleChange = (e) => {
+        console.log(e.target.name)
         setMessage({
             [e.target.name]: e.target.value,
+            postedBy: user.name,
+            cohort: user.cohort
         })
     }
 
