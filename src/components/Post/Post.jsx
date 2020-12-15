@@ -14,8 +14,6 @@ const Post = ({ post }) => {
           </div>
           <div className="message">
             <p>{post.message}</p>
-            <button>Ask</button>
-            <button>Motivate</button>
           </div>
         </section>
       ) : (
