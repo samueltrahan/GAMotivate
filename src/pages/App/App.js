@@ -5,6 +5,7 @@ import NavBar from "../../components/NavBar/NavBar";
 
 import Posts from '../../components/Posts/Posts';
 
+import LandingPage from '../../pages/LandingPage/LandingPage';
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
 
@@ -26,14 +27,14 @@ const App = () => {
 
   return (
     <>
-      <NavBar user={user} handleLogout={handleLogout} />
+      
       <Switch>
         <Route exact path="/login" render={({history}) => 
           <>
-            <LoginPage 
+          <LandingPage 
               history={history}
               handleSignupOrLogin={handleSignupOrLogin}
-            />
+              />
           </>
         }></Route>
 
@@ -48,6 +49,7 @@ const App = () => {
         
         <Route exact path="/posts" render={() => 
           <div>
+            <NavBar user={user} handleLogout={handleLogout} />
             <Posts user={user}/>
           </div>
         }>
