@@ -1,15 +1,22 @@
 import React, {useState, useEffect} from 'react';
 import userService from '../../services/userService';
-import "./UserPage.css"
+import "./UserPage.css";
+import {useParams} from 'react-router-dom';
 
-export default function UserPage({user}) {
-  const [users, setUsers] = useState({})
+export default function UserPage() {
+  const [account, setAccount] = useState({})
+  const { id } = useParams();
   useEffect(() =>{
-    const userId = userService.getUserFromId(
-      user._id
-    )
-    setUsers(userId)
+    getAccount()
   }, [])
+
+  const getAccount = async () => {
+    const newAccount = await userService.getUserFromId(
+      id
+    )
+    console.log(newAccount)
+    setAccount(newAccount)
+  }
 
   return (
       <div className="User">
@@ -17,11 +24,11 @@ export default function UserPage({user}) {
           <div className="background-color-div">
             <img src="img" alt="img"/><br/>
             <button>Edit Profile</button><br/>
-            <p><b>{users.name}</b></p><br/>
-            <p>{users.job}</p><br/>
-            <p><b>{users.cohort}</b></p><br/>
-            <p><b>{users.status}</b></p><br/>
-            <p>{users.location}</p><br/>
+            <p><b>{account.name}</b></p><br/>
+            <p>{account.job}</p><br/>
+            <p><b>{account.cohort}</b></p><br/>
+            <p><b>{account.status}</b></p><br/>
+            <p>{account.location}</p><br/>
           </div>
           <div className="imgs">
             <img src="https://i.imgur.com/fm34YyM.png" width="18" alt="world"/>              <a href="#portfolio" target="_blank" >Portfolio link</a><br/>
