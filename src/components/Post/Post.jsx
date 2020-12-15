@@ -4,6 +4,7 @@ import "./Post.css"
 const Post = ({ post }) => {
     return (
         <>
+        console.log(post)
             {post ? (
                 <section className="post">
                     <div>

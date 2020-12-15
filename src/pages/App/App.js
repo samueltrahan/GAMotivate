@@ -1,18 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 
+import NavBar from "../../components/NavBar/NavBar";
 
 import Posts from '../../components/Posts/Posts';
-import NavBar from '../../components/NavBar/NavBar';
+
+import LandingPage from '../../pages/LandingPage/LandingPage';
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
+
+
+import * as postsAPI from "../../services/posts-api"
 
 import userService from "../../services/userService";
 
 import "./App.css";
 
 const App = () => {
+  const [posts, setPosts] = useState([])
   const [user, setUser] = useState("");
+
+  useEffect(() => {
+    getPosts()
+  }, [])
+
+  const getPosts = async () => {
+        const postData = await postsAPI.getAll()
+        setPosts(postData.reverse())
+    }
 
   const handleLogout = () => {
     userService.logout();
@@ -25,14 +40,13 @@ const App = () => {
 
   return (
     <>
-      <NavBar user={user} handleLogout={handleLogout} />
       <Switch>
         <Route exact path="/login" render={({history}) => 
           <>
-            <LoginPage 
+          <LandingPage 
               history={history}
               handleSignupOrLogin={handleSignupOrLogin}
-            />
+              />
           </>
         }></Route>
 
@@ -47,7 +61,8 @@ const App = () => {
         
         <Route exact path="/posts" render={() => 
           <div>
-            <Posts user={user}/>
+            <NavBar user={user} handleLogout={handleLogout} />
+            <Posts user={user} posts={posts} getPosts={getPosts}/>
           </div>
         }>
         </Route>

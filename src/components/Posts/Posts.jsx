@@ -4,30 +4,18 @@ import Post from "../Post/Post"
 
 import "./PostForm.css"
 
-const Posts = ({ user }) => {
-    const [posts, setPosts] = useState([])
+const Posts = ({ user, posts, getPosts }) => {
     const [message, setMessage] = useState({
         message: "",
         postedBy: user._id,
         cohort: user.cohort,
     })
 
-    useEffect(() => {
-        initializePost()
-        getPosts()
-    }, [])
-
-    const initializePost = () => {
+    const initializeNewPost = () => {
         setMessage({
             ...message,
             message: "",
         })
-    }
-
-    const getPosts = async () => {
-        const postData = await postsAPI.getAll()
-        console.log(postData)
-        setPosts(postData.reverse())
     }
 
     const handleChange = (e) => {
@@ -41,9 +29,8 @@ const Posts = ({ user }) => {
         e.preventDefault()
         if (message.message) {
             try {
-                const post = await postsAPI.create(message)
-                console.log(post)
-                initializePost()
+                await postsAPI.create(message)
+                initializeNewPost()
                 getPosts()
             } catch (err) {
                 console.log(err)
