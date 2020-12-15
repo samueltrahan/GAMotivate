@@ -26,6 +26,7 @@ const Posts = ({ user }) => {
 
     const getPosts = async () => {
         const postData = await postsAPI.getAll()
+        console.log(postData)
         setPosts(postData.reverse())
     }
 
@@ -38,19 +39,20 @@ const Posts = ({ user }) => {
 
     const handleMessageSubmit = async (e) => {
         e.preventDefault()
-        try {
-            const post = await postsAPI.create(message)
-            setPosts([post, ...posts])
-            initializePost()
-        } catch (err) {
-            console.log(err)
+        if (message.message) {
+            try {
+                const post = await postsAPI.create(message)
+                console.log(post)
+                initializePost()
+                getPosts()
+            } catch (err) {
+                console.log(err)
+            }
         }
     }
 
     const showPosts = posts.map((post) => {
-        return (
-            <Post key={post._id} message={post.message} cohort={post.cohort} />
-        )
+        return <Post key={post._id} post={post} />
     })
 
     return (
@@ -75,7 +77,7 @@ const Posts = ({ user }) => {
                 ""
             )}
             <h1>Post Feed</h1>
-            {showPosts}
+            {posts ? showPosts : ""}
         </>
     )
 }
