@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
-
 import NavBar from "../../components/NavBar/NavBar";
 
 import Posts from '../../components/Posts/Posts';
@@ -19,6 +18,7 @@ import "./App.css";
 const App = () => {
   const [posts, setPosts] = useState([])
   const [user, setUser] = useState("");
+
 
   useEffect(() => {
     getPosts()
