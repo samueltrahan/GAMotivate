@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import * as postsAPI from "../../services/posts-api";
+import Post from "../Post/Post";
 
-const Posts = (props) => {
+const Posts = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const postData = postsAPI.getAll();
-    setPosts({ postData });
-  }, []);
+    postData.then((res) => setPosts(res));
+  });
 
-  console.log(posts);
+  const showPosts = posts.map((post) => {
+    return <Post key={post._id} message={post.message} cohort={post.cohort} />;
+  });
 
   return (
     <>
       <h1>Post Feed</h1>
+      {showPosts}
     </>
   );
 };
