@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom'
+import Logo from '../../Assets/galogo2.png'
 
 import './NavBar.css'
 
@@ -8,7 +9,7 @@ const NavBar = ({ user, handleLogout }) => {
     <>
       <nav className="nav-bar">
         <div className="nav-wrapper">
-          <Link to="/posts">Posts</Link>
+          <Link to="/posts"><img alt="" src={Logo}></img></Link>
           <ul className="right">
             <li>
               <Link to={`/user/${user._id}`}>Welcome, {user.name}</Link>
