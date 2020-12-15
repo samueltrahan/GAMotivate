@@ -9,8 +9,9 @@ router.get("/:id", postCtrl.getPostDetails);
 
 // router.use(require('../config/auth'))
 
-router.post('', postCtrl.create)
-router.put('/:id', postCtrl.update)
-router.delete('/:id', postCtrl.deleteOne)
+router.post('/post/:id', threadCtrl.create)
+router.post('/:id', threadCtrl.addReply)
+router.put('/:id', threadCtrl.update)
+router.delete('/:id', threadCtrl.deleteOne)
 
 module.exports = router

@@ -1,4 +1,5 @@
 const Thread = require('../models/thread')
+const Post = require('../models/post')
 
 module.exports = {
     getThreads,
@@ -23,7 +24,12 @@ function getThreadDetails(req, res) {
 
 function create(req, res) {
     Thread.create(req.body)
-    .then(thread => res.json(thread))
+    .then(thread => {
+        const post = Post.findById(req.params.id)
+        post.questionThreads.push(thread._id)
+        post.save()
+        return res.json(thread)
+    })
     .catch(err => res.json(err))
 }
 
