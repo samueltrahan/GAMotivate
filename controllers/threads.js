@@ -4,8 +4,9 @@ module.exports = {
     getThreads,
     getThreadDetails,
     create,
-    updateThread,
-    deleteOne
+    update,
+    deleteOne,
+    addReply
 }
 
 function getThreads(req, res) {
@@ -26,7 +27,7 @@ function create(req, res) {
     .catch(err => res.json(err))
 }
 
-function updateThread(req, res) {
+function update(req, res) {
     Thread.findByIdAndUpdate(req.params.id, req.body, {new:true})
     .then(thread => res.json(thread))
     .catch(err => res.json(err))
@@ -39,6 +40,9 @@ function deleteOne(req, res) {
 }
 
 function addReply(req, res) {
-    Thread.findById(req.params.id)
-    
+    const thread = Thread.findById(req.params.id)
+    thread.replies.push(req.body)
+    Thread.findByIdAndUpdate(req.params.id, thread)
+    .then(thread => res.json(thread))
+    .catch(err => res.json(err))
 }
