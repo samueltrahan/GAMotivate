@@ -4,6 +4,10 @@ export function getAll() {
   return fetch(BASE_URL).then((res) => res.json());
 }
 
+export function getPostFromId(id) {
+  return fetch(`${BASE_URL}/${id}`).then((res) => res.json());
+}
+
 export function create(post) {
   return fetch(BASE_URL, {
     method: "POST",

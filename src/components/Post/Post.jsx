@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Post.css";
 
-const Post = ({ post }) => {
+const Post = ({ post, user }) => {
+  console.log(post);
   return (
     <>
       {post ? (
@@ -10,14 +11,12 @@ const Post = ({ post }) => {
           <div>
             <img src="" alt="avatar" />
             <p>{post.postedBy.name}</p>
-            <p>{post.cohort ? post.cohort : "no cohort"}</p>
+            <p>{post.postedBy.cohort ? post.postedBy.cohort : "no cohort"}</p>
           </div>
           <div className="message">
             <p>{post.message}</p>
           </div>
-          <Route exact path="/thread" render={() => <ThreadPage post={post} />}>
-            Thread
-          </Route>
+          <Link to={`/posts/${post._id}`}>Thread</Link>
         </section>
       ) : (
         ""

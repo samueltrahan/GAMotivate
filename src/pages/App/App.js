@@ -6,7 +6,6 @@ import NavBar from "../../components/NavBar/NavBar";
 import Posts from "../../components/Posts/Posts";
 
 import LandingPage from "../../pages/LandingPage/LandingPage";
-import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
 import ThreadPage from "../ThreadPage/ThreadPage";
 
@@ -46,84 +45,6 @@ const App = () => {
           path="/login"
           render={({ history }) => (
             <>
-              <LoginPage
-                history={history}
-                handleSignupOrLogin={handleSignupOrLogin}
-              />
-            </>
-          )}
-        ></Route>
-
-        <Route
-          exact
-          path="/signup"
-          render={({ history }) => (
-            <>
-              <SignupPage
-                history={history}
-                handleSignupOrLogin={handleSignupOrLogin}
-              />
-            </>
-          )}
-        ></Route>
-        <Route
-          exact
-          path="/posts"
-          render={() => (
-            <div>
-              <Posts user={user} posts={posts} getPosts={getPosts} />
-            </div>
-          )}
-        ></Route>
-        <Route
-          exact
-          path="/thread"
-          render={() => (
-            <div>
-              <ThreadPage />
-            </div>
-          )}
-        ></Route>
-        <Route
-          exact
-          path="/login"
-          render={({ history }) => (
-            <>
-              <LoginPage
-                history={history}
-                handleSignupOrLogin={handleSignupOrLogin}
-              />
-            </>
-          )}
-        ></Route>
-
-        <Route
-          exact
-          path="/signup"
-          render={({ history }) => (
-            <>
-              <SignupPage
-                history={history}
-                handleSignupOrLogin={handleSignupOrLogin}
-              />
-            </>
-          )}
-        ></Route>
-
-        <Route
-          exact
-          path="/posts"
-          render={() => (
-            <div>
-              <Posts user={user} />
-            </div>
-          )}
-        ></Route>
-        <Route
-          exact
-          path="/login"
-          render={({ history }) => (
-            <>
               <LandingPage
                 history={history}
                 handleSignupOrLogin={handleSignupOrLogin}
@@ -152,6 +73,16 @@ const App = () => {
             <div>
               <NavBar user={user} handleLogout={handleLogout} />
               <Posts user={user} posts={posts} getPosts={getPosts} />
+            </div>
+          )}
+        ></Route>
+        <Route
+          exact
+          path="/posts/:id"
+          render={() => (
+            <div>
+              <NavBar user={user} handleLogout={handleLogout} />
+              <ThreadPage user={user} posts={posts} />
             </div>
           )}
         ></Route>

@@ -5,42 +5,41 @@ import Post from "../Post/Post";
 import "./PostForm.css";
 
 const Posts = ({ user, posts, getPosts }) => {
-    const [message, setMessage] = useState({
-        message: "",
-        postedBy: user._id,
-        cohort: user.cohort,
-    })
+  const [message, setMessage] = useState({
+    message: "",
+    postedBy: user._id,
+    cohort: user.cohort,
+  });
 
-    const initializeNewPost = () => {
-        setMessage({
-            ...message,
-            message: "",
-        })
-    }
+  const initializeNewPost = () => {
+    setMessage({
+      ...message,
+      message: "",
+    });
+  };
 
-    const handleChange = (e) => {
-        setMessage({
-            ...message,
-            [e.target.name]: e.target.value,
-        })
-    }
+  const handleChange = (e) => {
+    setMessage({
+      ...message,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    const handleMessageSubmit = async (e) => {
-        e.preventDefault()
-        if (message.message) {
-            try {
-                await postsAPI.create(message)
-                initializeNewPost()
-                getPosts()
-            } catch (err) {
-                console.log(err)
-            }
-        }
+  const handleMessageSubmit = async (e) => {
+    e.preventDefault();
+    if (message.message) {
+      try {
+        await postsAPI.create(message);
+        initializeNewPost();
+        getPosts();
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
   const showPosts = posts.map((post) => {
-    return <Post key={post._id} post={post} />;
+    return <Post key={post._id} post={post} user={user} />;
   });
 
   return (
@@ -69,5 +68,4 @@ const Posts = ({ user, posts, getPosts }) => {
     </>
   );
 };
-
 export default Posts;
