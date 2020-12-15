@@ -10,6 +10,7 @@ import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
 
 import userService from "../../services/userService";
+import UserPage from "../UserPage/UserPage";
 
 import "./App.css";
 
@@ -53,7 +54,12 @@ const App = () => {
         </div>
       }>
         </Route>
+        <Route exact path="/user/:id" render={() => 
+          <UserPage user={user}/>
+                  }>
+        </Route>
       </Switch>
+      
     </>
   );
 };
