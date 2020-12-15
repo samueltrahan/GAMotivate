@@ -8,7 +8,6 @@ const Posts = ({ user, posts, getPosts }) => {
     const [message, setMessage] = useState({
         message: "",
         postedBy: user._id,
-        cohort: user.cohort,
     })
 
     const initializeNewPost = () => {

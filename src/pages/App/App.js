@@ -6,12 +6,9 @@ import NavBar from "../../components/NavBar/NavBar";
 import Posts from '../../components/Posts/Posts';
 
 import LandingPage from '../../pages/LandingPage/LandingPage';
-import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
 
-
 import * as postsAPI from "../../services/posts-api"
-
 import userService from "../../services/userService";
 
 import "./App.css";
