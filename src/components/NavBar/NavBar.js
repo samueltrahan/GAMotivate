@@ -8,6 +8,7 @@ const NavBar = ({ user, handleLogout }) => {
     <>
       <nav className="nav-bar">
         <div className="nav-wrapper">
+          <Link to="/posts">Posts</Link>
           <ul className="right">
             <li>
               <Link to={`/user/${user._id}`}>Welcome, {user.name}</Link>

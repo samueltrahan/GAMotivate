@@ -28,7 +28,7 @@ const LoginPage = ({ history, handleSignupOrLogin }) => {
 
     return (
         <div className="LoginPage">
-            <h3>Log In</h3>
+          <h3 className="login-title">Log in to your account.</h3>
             <form
                 className="col s12"
                 autoComplete="off"
@@ -64,14 +64,15 @@ const LoginPage = ({ history, handleSignupOrLogin }) => {
                 </div>
                 <div className="row">
                     <div className="col s12">
-                        <button className="btn green">Log In</button>
-                        &nbsp;&nbsp;&nbsp;
-                        <Link className="btn red" to="/">
-                            Cancel
-                        </Link>
+                        <button className="login-btn btn yellow">Log In</button>
                     </div>
                 </div>
             </form>
+            <hr ></hr>
+            <div className="login-signup">
+              <h3 className="sign-title">New to Motivate?<br /> Create your account</h3>
+              <Link className="sign-btn" to="/signup">Sign up</Link>
+            </div>
         </div>
     )
 }
