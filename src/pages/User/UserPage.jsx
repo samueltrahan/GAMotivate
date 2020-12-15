@@ -42,7 +42,7 @@ export default class Modal extends React.Component {
       }
       return <div>
         <a href="#home"><i className="home"></i>Home</a>
-        <a href="#skillheader"><i className="LinkedIn"></i>LinkedIn</a>
+        <a href="#linkedin"><i className="LinkedIn"></i>LinkedIn</a>
         <a href="#portfolio"><i className="portfolio"></i>Portfolio</a>
     </div>;
   }
