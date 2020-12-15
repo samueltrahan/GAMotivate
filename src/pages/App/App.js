@@ -7,10 +7,7 @@ import Posts from '../../components/Posts/Posts';
 import LoginLandingPage from '../LandingPage/LoginLandingPage';
 import SignUpLandingPage from '../LandingPage/SignUpLandingPage'
 
-
-
 import * as postsAPI from "../../services/posts-api"
-
 import userService from "../../services/userService";
 
 import "./App.css";
