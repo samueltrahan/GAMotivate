@@ -1,15 +1,16 @@
-const express = require('express');
+
+const express = require("express");
 const router = express.Router();
 
-const threadCtrl = require('../controllers/threads')
+const postCtrl = require("../controllers/posts");
 
-router.get('/:id', threadCtrl.getThreadDetails)
+router.get("", postCtrl.getPosts);
+router.get("/:id", postCtrl.getPostDetails);
 
 // router.use(require('../config/auth'))
 
-router.post('', threadCtrl.create)
-router.post('/:id', threadCtrl.addReply)
-router.put('/:id', threadCtrl.update)
-router.delete('/:id', threadCtrl.deleteOne)
+router.post('', postCtrl.create)
+router.put('/:id', postCtrl.update)
+router.delete('/:id', postCtrl.deleteOne)
 
 module.exports = router

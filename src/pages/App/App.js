@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 
-import NavBar from "../../components/NavBar/NavBar";
+
 import PostForm from '../../components/PostForm/PostForm';
+import Posts from '../../components/Posts/Posts';
 
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
@@ -26,7 +27,6 @@ const App = () => {
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
-      {/* <Posts /> */}
       <Switch>
         <Route exact path="/login" render={({history}) => 
           <>
@@ -46,8 +46,11 @@ const App = () => {
           </>
         }></Route>
         <Route exact path="/posts" render={() => 
-        <PostForm user={user}/>
-        }>
+        <div>
+          <PostForm user={user}/>
+          <Posts />
+        </div>
+      }>
         </Route>
       </Switch>
     </>
