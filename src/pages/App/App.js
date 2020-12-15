@@ -28,7 +28,6 @@ const App = () => {
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
-      <Posts />
       <Switch>
         <Route exact path="/login" render={({history}) => 
           <>
@@ -48,8 +47,11 @@ const App = () => {
           </>
         }></Route>
         <Route exact path="/posts" render={() => 
-        <PostForm user={user}/>
-        }>
+        <div>
+          <PostForm user={user}/>
+          <Posts />
+        </div>
+      }>
         </Route>
       </Switch>
     </>
