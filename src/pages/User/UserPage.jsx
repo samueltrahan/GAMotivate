@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
-import App from '../../pages/App/App.js';
+import UserPage from "./User/UserPage";
+const rootElement = document.getElementById("root");
 
 class Header extends Component {
     render () {
@@ -13,37 +14,43 @@ class Header extends Component {
     }
 }
 
-class Dashboard extends Component {
-  state = { show: false };
-
-  showModal = () => {
-    this.setState({ show: true });
+class User extends React.Component {
+  state = {
+    show: false
   };
-
-  hideModal = () => {
-    this.setState({ show: false });
+  showModal = e => {
+    this.setState({
+      show: true
+    });
   };
-
   render() {
     return (
-      <main>
-        <h1>Profile</h1>
-        <Modal show={this.state.show} handleClose={this.hideModal}>
-        </Modal>
-        <button type="button" onClick={this.showModal}>
-          open
-        </button>
-      </main>
+      <div className="User">
+        <button onClick={e => {
+              this.showModal();
+         }}
+          > show Modal </button>
+        <Modal show={this.state.show} />
+      </div>
     );
   }
 }
+export default class Modal extends React.Component {
+  render() {
+      if(!this.props.show){
+          return null;
+      }
+      return <div>
+        <a href="#home"><i className="home"></i>Home</a>
+        <a href="#skillheader"><i className="LinkedIn"></i>LinkedIn</a>
+        <a href="#portfolio"><i className="portfolio"></i>Portfolio</a>
+    </div>;
+  }
+}
 
-const container = document.createElement("div");
-document.body.appendChild(container);
-ReactDOM.render(<Dashboard />, container);
 
 class Main extends Component {
-    render() {
+  render() {
         return(
             <section className="container-banner">
                 <h1>Hi! I'm {user}</h1>
@@ -54,11 +61,11 @@ class Main extends Component {
 
 render = () => {
     return(<div>        
-      <Header></Header>   
-      <Dashboard></Dashboard>
+      <Header></Header>
+      <User></User>
       <Main></Main>         
       </div>
     )
   }
 
-export default SignupPage;
+ReactDOM.render(<UserPage />, rootElement);
