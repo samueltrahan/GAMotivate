@@ -5,6 +5,7 @@ import NavBar from "../../components/NavBar/NavBar";
 
 import Posts from '../../components/Posts/Posts';
 
+import LandingPage from '../../pages/LandingPage/LandingPage';
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
 
@@ -42,10 +43,10 @@ const App = () => {
       <Switch>
         <Route exact path="/login" render={({history}) => 
           <>
-            <LoginPage 
+          <LandingPage 
               history={history}
               handleSignupOrLogin={handleSignupOrLogin}
-            />
+              />
           </>
         }></Route>
 
