@@ -8,11 +8,10 @@ const postSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
     },
-    questionThreads: [{
+    comments: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref:'Thread'
+        ref:'Comment'
     }]
-    
 }, {
     timestamps:true
 })
