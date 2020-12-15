@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
-
 import NavBar from "../../components/NavBar/NavBar";
 
 import Posts from "../../components/Posts/Posts";
 
-import LandingPage from "../../pages/LandingPage/LandingPage";
-import SignupPage from "../SignupPage/SignupPage";
-import ThreadPage from "../ThreadPage/ThreadPage";
+import LoginLandingPage from "../LandingPage/LoginLandingPage";
+import SignUpLandingPage from "../LandingPage/SignUpLandingPage";
 
 import * as postsAPI from "../../services/posts-api";
-
 import userService from "../../services/userService";
+import UserPage from "../UserPage/UserPage";
 
 import "./App.css";
 
@@ -45,7 +43,7 @@ const App = () => {
           path="/login"
           render={({ history }) => (
             <>
-              <LandingPage
+              <LoginLandingPage
                 history={history}
                 handleSignupOrLogin={handleSignupOrLogin}
               />
@@ -58,7 +56,7 @@ const App = () => {
           path="/signup"
           render={({ history }) => (
             <>
-              <SignupPage
+              <SignUpLandingPage
                 history={history}
                 handleSignupOrLogin={handleSignupOrLogin}
               />
@@ -78,13 +76,8 @@ const App = () => {
         ></Route>
         <Route
           exact
-          path="/posts/:id"
-          render={() => (
-            <div>
-              <NavBar user={user} handleLogout={handleLogout} />
-              <ThreadPage user={user} posts={posts} />
-            </div>
-          )}
+          path="/user/:id"
+          render={() => <UserPage user={user} />}
         ></Route>
       </Switch>
     </>

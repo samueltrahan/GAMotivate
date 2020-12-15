@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Post.css";
 
-const Post = ({ post, user }) => {
-  console.log(post);
+const Post = ({ post }) => {
   return (
     <>
       {post ? (
@@ -15,8 +14,9 @@ const Post = ({ post, user }) => {
           </div>
           <div className="message">
             <p>{post.message}</p>
+            <button>Ask</button>
+            <button>Motivate</button>
           </div>
-          <Link to={`/posts/${post._id}`}>Thread</Link>
         </section>
       ) : (
         ""
