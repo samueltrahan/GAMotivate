@@ -8,18 +8,21 @@ const Posts = ({ user }) => {
     const [posts, setPosts] = useState([])
     const [message, setMessage] = useState({
         message: "",
-        postedBy: "",
-        cohort: "",
+        postedBy: user._id,
+        cohort: user.cohort,
     })
 
     useEffect(() => {
-        setMessage({
-            ...message,
-            postedBy: user._id,
-            cohort: user.cohort,
-        })
+        initializePost()
         getPosts()
     }, [])
+
+    const initializePost = () => {
+        setMessage({
+            ...message,
+            message: "",
+        })
+    }
 
     const getPosts = async () => {
         const postData = await postsAPI.getAll()
@@ -28,9 +31,8 @@ const Posts = ({ user }) => {
 
     const handleChange = (e) => {
         setMessage({
+            ...message,
             [e.target.name]: e.target.value,
-            postedBy: user._id,
-            cohort: user.cohort,
         })
     }
 
@@ -39,6 +41,7 @@ const Posts = ({ user }) => {
         try {
             const post = await postsAPI.create(message)
             setPosts([post, ...posts])
+            initializePost()
         } catch (err) {
             console.log(err)
         }
