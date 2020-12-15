@@ -13,7 +13,8 @@
 .thread-container {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  flex-grow: 1;
+  margin-left: 20px;
 }
 
 .thread-container > h1 {
@@ -22,6 +23,11 @@
 
 .thread-container > textarea {
   border-radius: 5px;
-  width: 100%;
+  /* max-width: 60%; */
   height: 50%;
+}
+
+.post-button {
+  display: flex;
+  justify-content: flex-end;
 }

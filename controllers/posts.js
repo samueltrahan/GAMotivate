@@ -10,6 +10,7 @@ module.exports = {
 
 function getPosts(req, res) {
     Post.find({})
+    .populate('postedBy')
     .then(posts => res.json(posts))
     .catch(err => res.json(err))
 }

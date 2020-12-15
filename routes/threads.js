@@ -7,7 +7,7 @@ router.get('/:id', threadCtrl.getThreadDetails)
 
 // router.use(require('../config/auth'))
 
-router.post('', threadCtrl.create)
+router.post('/post/:id', threadCtrl.create)
 router.post('/:id', threadCtrl.addReply)
 router.put('/:id', threadCtrl.update)
 router.delete('/:id', threadCtrl.deleteOne)

@@ -3,7 +3,6 @@ import { Route, Switch } from "react-router-dom";
 
 import NavBar from "../../components/NavBar/NavBar";
 
-import PostForm from "../../components/PostForm/PostForm";
 import Posts from "../../components/Posts/Posts";
 
 import LoginPage from "../LoginPage/LoginPage";
@@ -60,8 +59,7 @@ const App = () => {
           path="/posts"
           render={() => (
             <div>
-              <PostForm user={user} />
-              <Posts />
+              <Posts user={user} />
             </div>
           )}
         ></Route>
@@ -71,6 +69,41 @@ const App = () => {
           render={() => (
             <div>
               <ThreadPage />
+            </div>
+          )}
+        ></Route>
+        <Route
+          exact
+          path="/login"
+          render={({ history }) => (
+            <>
+              <LoginPage
+                history={history}
+                handleSignupOrLogin={handleSignupOrLogin}
+              />
+            </>
+          )}
+        ></Route>
+
+        <Route
+          exact
+          path="/signup"
+          render={({ history }) => (
+            <>
+              <SignupPage
+                history={history}
+                handleSignupOrLogin={handleSignupOrLogin}
+              />
+            </>
+          )}
+        ></Route>
+
+        <Route
+          exact
+          path="/posts"
+          render={() => (
+            <div>
+              <Posts user={user} />
             </div>
           )}
         ></Route>
