@@ -7,11 +7,18 @@ const Posts = () => {
 
   useEffect(() => {
     const postData = postsAPI.getAll();
-    postData.then((res) => setPosts(res));
+    postData.then((res) => setPosts(res.reverse()));
   }, []);
 
   const showPosts = posts.map((post) => {
-    return <Post key={post._id} message={post.message} cohort={post.cohort} />;
+    return (
+      <Post
+        id={post._id}
+        key={post._id}
+        message={post.message}
+        cohort={post.cohort}
+      />
+    );
   });
 
   return (

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import NavBar from "../../components/NavBar/NavBar";
-import Posts from "../../components/Posts/Posts";
+
 import PostForm from "../../components/PostForm/PostForm";
+import Posts from "../../components/Posts/Posts";
 
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
