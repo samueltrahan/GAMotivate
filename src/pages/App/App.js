@@ -53,7 +53,7 @@ const App = () => {
                 history={history}
                 handleSignupOrLogin={handleSignupOrLogin}
               />
-       
+       </>)} />
         <Route
           exact
           path="/posts"

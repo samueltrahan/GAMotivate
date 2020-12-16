@@ -68,26 +68,19 @@ const PostPage = ({ posts, user }) => {
         <>
             {currentPost ? (
                 <div className="postPage">
-                    <div className="user-info">User Info</div>
-                    <section className="thread">
+                    <div className="profile-section">
+            <div className="profile-card">
+              <i className="fad fa-user-circle fa-10x"></i>
+              <p>Name</p>
+              <p>Cohort</p>
+            </div>
+          </div>
+                    
+                    <section className="post-page-form">
                         <div className="thread-container">
                             {/* <h1>GA MOTIVATE</h1> */}
                             <h1>{currentPost.message}</h1>
-                            {user ? (
-                                <form onSubmit={handleCommentSubmit}>
-                                    <textarea
-                                        placeholder="Post a question or something that motivates you"
-                                        name="message"
-                                        onChange={handleCommentChange}
-                                        value={comment.message}
-                                    ></textarea>
-                                    <button>Post</button>
-                                </form>
-                            ) : (
-                                ""
-                            )}
-                        </div>
-                        {currentPost.comments ? (
+                            {currentPost.comments ? (
                             <div className="comments">
                                 {currentPost.comments.map((comment) => (
                                     <Comment
@@ -97,12 +90,31 @@ const PostPage = ({ posts, user }) => {
                                         handleDeleteComment={
                                             handleDeleteComment
                                         }
+                                        
                                     />
                                 ))}
                             </div>
                         ) : (
-                            "No Comments"
+                            "No Comments" 
                         )}
+                            {user ? (
+                <form onSubmit={handleCommentSubmit}>
+                  <div className="main-post-page">
+                    <textarea
+                      className="post-page-input"
+                      placeholder="Post a question or something that motivates you"
+                      name="message"
+                      onChange={handleCommentChange}
+                      value={comment.message}
+                    ></textarea>
+                  </div>
+                  <button className="post-page-btn">Post</button>
+                </form>
+              ) : (
+                ""
+              )}
+                        </div>
+                        
                     </section>
                 </div>
             ) : (
