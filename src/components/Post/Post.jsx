@@ -1,11 +1,10 @@
 import React from "react"
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import "./Post.css"
 
 const Post = ({ post }) => {
     return (
         <>
-        
             {post ? (
                 <section className="post">
                     <div>
@@ -20,7 +19,7 @@ const Post = ({ post }) => {
                     <div className="message">
                         <p>{post.message}</p>
                     </div>
-                        <Link to={`/post/${post._id}`} >Reply</Link>
+                    <Link to={`/post/${post._id}`}>Reply</Link>
                 </section>
             ) : (
                 ""

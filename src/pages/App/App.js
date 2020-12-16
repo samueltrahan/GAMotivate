@@ -63,18 +63,19 @@ const App = () => {
             <NavBar user={user} handleLogout={handleLogout} />
             <Posts user={user} posts={posts} getPosts={getPosts}/>
           </div>
-        }>
-        </Route>
+        }></Route>
+
         <Route exact path="/user/:id" render={() => 
           <UserPage user={user}/>
-                  }>
-        </Route>
+        }></Route>
+
         <Route exact path="/post/:id" render={() => 
-          <PostPage user={user} posts={posts}/>
-                  }>
-        </Route>
+          <>
+            <NavBar user={user} handleLogout={handleLogout} />
+            <PostPage user={user} posts={posts}/>
+          </>
+        }></Route>
       </Switch>
-      
     </>
   );
 };

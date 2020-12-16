@@ -1,3 +1,4 @@
+const Comment = require('../models/comment')
 const Post = require('../models/post')
 
 module.exports = {
@@ -8,9 +9,11 @@ module.exports = {
 function create(req, res) {
     Comment.create(req.body)
     .then(comment => {
-        const post = Post.findById(req.params.postId)
-        post.comments.push(comment._id)
-        post.save()
+        Post.findById(req.params.postId)
+        .then((post) => {
+            post.comments.push(comment._id)
+            post.save()
+        })
         return res.json(comment)
     })
     .catch(err => res.json(err))
