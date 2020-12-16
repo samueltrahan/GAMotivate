@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ProfileImage from "../../Assets/Profile Image.png";
 import CommentButton from "../../Assets/Comment Button.png";
 import SaveButton from "../../Assets/Save button.png";
 import "./Post.css";
 
 const Post = ({ post, user }) => {
+  const { id } = useParams();
   return (
     <>
       {post ? (
@@ -21,8 +22,13 @@ const Post = ({ post, user }) => {
               </div>
             </div>
 
-            {user ? <div className="post-delete-btn"><i className="far fa-trash-alt"></i></div> : ""}
-
+            {user._id === post._id ? (
+              <div className="post-delete-btn">
+                <i className="far fa-trash-alt"></i>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           <div className="message">
             <p>{post.message}</p>
