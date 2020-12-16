@@ -65,7 +65,12 @@
 }
 
 .post-delete-btn {
-  margin: 10px;
+  margin: 5px 5px 8px 8px;
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
 }
 
 .comment-btn {

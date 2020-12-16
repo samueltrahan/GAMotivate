@@ -39,7 +39,7 @@ const Posts = ({ user, posts, getPosts }) => {
   };
 
   const showPosts = posts.map((post) => {
-    return <Post key={post._id} post={post} />;
+    return <Post key={post._id} post={post} user={user} />;
   });
 
   return (
