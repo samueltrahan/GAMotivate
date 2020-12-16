@@ -82,7 +82,7 @@ const App = () => {
                   </div>
                 </div>
                 <div className="post-section">
-              <Posts user={user} posts={posts} getPosts={getPosts} />
+              <Posts user={user} posts={posts} setPosts={setPosts} />
                 </div>
               </div>
             </div>

@@ -5,8 +5,7 @@ import Post from "../Post/Post"
 
 import "./PostForm.css"
 
-const Posts = ({ user, posts }) => {
-    const [postFeed, setPostFeed] = useState(posts)
+const Posts = ({ user, posts, setPosts }) => {
     const [message, setMessage] = useState({
         message: "",
         postedBy: user._id,
@@ -32,9 +31,8 @@ const Posts = ({ user, posts }) => {
             try {
                 const newPost = await postsAPI.create(message)
                 const populatedPost = await postsAPI.getPostFromId(newPost._id)
-                console.log(populatedPost)
                 initializeNewPost()
-                setPostFeed([populatedPost, ...postFeed])
+                setPosts([populatedPost, ...posts])
             } catch (err) {
                 console.log(err)
             }
@@ -45,13 +43,13 @@ const Posts = ({ user, posts }) => {
         try {
             const deletedPost = await postsAPI.deleteOne(id)
             console.log(deletedPost)
-            setPostFeed(postFeed.filter((post) => post._id !== deletedPost._id))
+            setPosts(posts.filter((post) => post._id !== deletedPost._id))
         } catch (err) {
             console.log(err)
         }
     }
 
-    const showPosts = postFeed.map((post) => {
+    const showPosts = posts.map((post) => {
         return (
             <Post
                 key={post._id}
@@ -116,7 +114,7 @@ const Posts = ({ user, posts }) => {
             ) : (
                 ""
             )}
-            {postFeed ? (
+            {posts ? (
                 <section className="post-container">{showPosts}</section>
             ) : (
                 ""
