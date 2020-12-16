@@ -30,9 +30,12 @@ const Comment = ({ id, handleDeleteComment, user }) => {
           </div>
           <p className="comment-message">{comment.message}</p>
           {comment.postedBy._id === user._id ? (
-            <button onClick={() => handleDeleteComment(comment._id)}>
+            <div
+              className="post-delete-btn"
+              onClick={() => handleDeleteComment(comment._id)}
+            >
               <i className="far fa-trash-alt"></i>
-            </button>
+            </div>
           ) : (
             ""
           )}
