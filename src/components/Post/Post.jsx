@@ -30,7 +30,7 @@ const Post = ({ post, user }) => {
             )}
           </div>
           <div className="message">
-            <p>{post.message}</p>
+            <p className="message-p">{post.message}</p>
           </div>
           <div className="post-bottom-section">
             <div className="post-line"></div>

@@ -64,6 +64,8 @@ const PostPage = ({ posts, user }) => {
     }
   };
 
+  console.log(currentPost);
+
   return (
     <>
       {currentPost ? (
