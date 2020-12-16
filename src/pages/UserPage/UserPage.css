@@ -22,9 +22,9 @@ img {
     border-radius: 50%;
 }
 
-.edit {
+.edit-button {
     background-color: #fa4542;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     border-radius: 12px;
     color: white;
     padding: 20px 30px 20px 30px;
