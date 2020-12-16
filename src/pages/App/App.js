@@ -11,6 +11,7 @@ import PostPage from "../PostPage/PostPage";
 import * as postsAPI from "../../services/posts-api";
 import userService from "../../services/userService";
 import UserPage from "../UserPage/UserPage";
+
 import ProfileImage from '../../Assets/Profile Image.png';
 
 import "./App.css";
@@ -49,23 +50,7 @@ const App = () => {
                 history={history}
                 handleSignupOrLogin={handleSignupOrLogin}
               />
-            </>
-          )}
-        ></Route>
-
-        <Route
-          exact
-          path="/signup"
-          render={({ history }) => (
-            <>
-              <SignUpLandingPage
-                history={history}
-                handleSignupOrLogin={handleSignupOrLogin}
-              />
-            </>
-          )}
-        ></Route>
-
+       
         <Route
           exact
           path="/signup"
@@ -118,6 +103,7 @@ const App = () => {
           )}
         ></Route>
       </Switch>
+      
     </>
   );
 };
