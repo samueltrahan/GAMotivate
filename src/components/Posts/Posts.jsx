@@ -42,6 +42,20 @@ const Posts = ({ user, posts, getPosts }) => {
     return <Post key={post._id} post={post} />;
   });
 
+  const customButton = document.getElementById('custom-button')
+  const realButton = document.getElementById('real-btn')
+  const customText = document.getElementById('custom-text');
+
+//   customButton.addEventListener("click", function() {
+//       realButton.click()
+//   })
+
+//   realButton.addEventListener("change", function() {
+//       if(realButton.value) {
+//           customText.innerHTML = realButton.value
+//       } 
+//   })
+
   return (
     <>
       {user ? (
@@ -59,6 +73,10 @@ const Posts = ({ user, posts, getPosts }) => {
               ></textarea>
             </div>
             <div className="post-btn-section">
+                <span id="custom-text"></span>
+               <input id="real-btn" type="file" hidden="hidden"></input><i id="custom-button" className="fas fa-image fa-2x"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+               <i className="fas fa-music fa-2x"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <i className="fas fa-video fa-2x"></i>
               <button className="post-btn" type="submit">
                 Post
               </button>

@@ -20,14 +20,14 @@ const Post = ({ post }) => {
                 </p>
               </div>
             </div>
-            <div className="post-delete-btn">x</div>
+            <div className="post-delete-btn"><i className="far fa-trash-alt"></i></div>
           </div>
           <div className="message">
             <p>{post.message}</p>
           </div>
           <div className="post-bottom-section">
             <div className="post-line"></div>
-            <img src={SaveButton} alt="Save Button" className="save-btn" />
+            <i className="far fa-bookmark fa-3x"></i>
             <Link to={`/post/${post._id}`}>
               <img
                 src={CommentButton}

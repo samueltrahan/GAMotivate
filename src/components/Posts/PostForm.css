@@ -29,6 +29,10 @@
 }
 
 .post-btn {
+display: flex;
+justify-content: center;
+align-items: center;
+float: right;
   height: 30px;
   width: 100px;
   border-radius: 5px;

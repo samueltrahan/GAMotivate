@@ -11,6 +11,7 @@ import PostPage from "../PostPage/PostPage";
 import * as postsAPI from "../../services/posts-api";
 import userService from "../../services/userService";
 import UserPage from "../UserPage/UserPage";
+import ProfileImage from '../../Assets/Profile Image.png';
 
 import "./App.css";
 
@@ -84,7 +85,18 @@ const App = () => {
           render={() => (
             <div>
               <NavBar user={user} handleLogout={handleLogout} />
+              <div className="feed-page">
+                <div className="profile-section">
+                  <div className="profile-card">
+                    <i className="fad fa-user-circle fa-10x"></i>
+                    <p>Name</p>
+                    <p>Cohort</p>
+                  </div>
+                </div>
+                <div className="post-section">
               <Posts user={user} posts={posts} getPosts={getPosts} />
+                </div>
+              </div>
             </div>
           )}
         ></Route>
