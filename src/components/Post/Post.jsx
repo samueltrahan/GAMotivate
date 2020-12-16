@@ -27,7 +27,7 @@ const Post = ({ post }) => {
           </div>
           <div className="post-bottom-section">
             <div className="post-line"></div>
-            <img src={SaveButton} alt="Save Button" className="save-btn" />
+            <img src={SaveButton} alt="Save Button" className="save-post-btn" />
             <Link to={`/post/${post._id}`}>
               <img
                 src={CommentButton}
