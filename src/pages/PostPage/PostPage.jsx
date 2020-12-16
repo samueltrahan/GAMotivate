@@ -75,9 +75,13 @@ const PostPage = ({ posts, user }) => {
               <section className="post-page">
                 <div className="posted-user-details">
                   <div>
-                    <img src={ProfileImage} alt="avatar" className="avatar" />
+                    <img
+                      src={ProfileImage}
+                      alt="avatar"
+                      className="post-page-avatar"
+                    />
                     <div>
-                      <p className="user-details">{post.postedBy.name}</p>
+                      <p className="post-page-name">{post.postedBy.name}</p>
                       <p className="user-details">
                         {post.postedBy.cohort ? post.postedBy.cohort : "no coh"}
                       </p>
