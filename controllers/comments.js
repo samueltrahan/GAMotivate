@@ -2,8 +2,16 @@ const Comment = require('../models/comment')
 const Post = require('../models/post')
 
 module.exports = {
+    getComment,
     create,
     deleteOne,
+}
+
+function getComment(req, res) {
+    Comment.findById(req.params.id)
+    .populate('postedBy')
+    .then(comment => res.json(comment))
+    .catch(err => res.json(err))
 }
 
 function create(req, res) {

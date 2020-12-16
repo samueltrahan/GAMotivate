@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import Comments from "../../components/Comments/Comments";
+import Comment from "../../components/Comment/Comment";
 
 import { getPostFromId } from "../../services/posts-api";
 import * as commentAPI from "../../services/comments-api";
 import "./PostPage.css";
 
 const PostPage = ({ posts, user }) => {
-  const [currentPost, setCurrentPost] = useState([]);
   const { id } = useParams();
+  const [currentPost, setCurrentPost] = useState(
+    posts.filter((post) => post._id === id)
+  );
   const [comment, setComment] = useState({
     message: "",
     postedBy: user._id,
   });
 
   useEffect(() => {
-    getPost();
-  }, []);
+    getPost(id);
+  }, [id]);
 
-  const getPost = async () => {
-    const newPost = await getPostFromId(id);
+  const getPost = async (postId) => {
+    const newPost = await getPostFromId(postId);
+    console.log(newPost, "post");
     setCurrentPost(newPost);
   };
 
@@ -35,34 +38,80 @@ const PostPage = ({ posts, user }) => {
     e.preventDefault();
     if (comment.message) {
       try {
-        await commentAPI.create(comment, id);
-        getPost();
+        const newComment = await commentAPI.create(comment, id);
+        setComment({ ...comment, message: "" });
+        setCurrentPost({
+          ...currentPost,
+          comments: [...currentPost.comments, newComment],
+        });
       } catch (err) {
         console.log(err);
       }
     }
   };
 
+  const handleDeleteComment = async (commentId) => {
+    try {
+      const deletedComment = await commentAPI.deleteComment(commentId);
+      setCurrentPost({
+        ...currentPost,
+        comments: currentPost.comments.filter(
+          (comment) => comment._id !== deletedComment._id
+        ),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       {currentPost ? (
-        <section className="thread">
-          <div className="user-info">User Info</div>
-          <div className="thread-container">
-            {/* <h1>GA MOTIVATE</h1> */}
-            <h1>{currentPost.message}</h1>
-            <form onSubmit={handleCommentSubmit}>
-              <textarea
-                placeholder="Post a question or something that motivates you"
-                name="message"
-                onChange={handleCommentChange}
-                value={comment.message}
-              ></textarea>
-              <button>Post</button>
-            </form>
+        <div className="postPage">
+          <div className="profile-section">
+            <div className="profile-card">
+              <i className="fad fa-user-circle fa-10x"></i>
+              <p>Name</p>
+              <p>Cohort</p>
+            </div>
           </div>
-          <Comments comments={currentPost.comments} />
-        </section>
+          <section className="post-page-form">
+            <div className="thread-container">
+              <h1 className="post-title">MOTIVATE</h1>
+              <h1>{currentPost.message}</h1>
+              {user ? (
+                <form onSubmit={handleCommentSubmit}>
+                  <div className="main-post-page">
+                    <textarea
+                      className="post-page-input"
+                      placeholder="Post a question or something that motivates you"
+                      name="message"
+                      onChange={handleCommentChange}
+                      value={comment.message}
+                    ></textarea>
+                  </div>
+                  <button className="post-page-btn">Post</button>
+                </form>
+              ) : (
+                ""
+              )}
+            </div>
+            {currentPost.comments ? (
+              <div className="comments">
+                {currentPost.comments.map((comment) => (
+                  <Comment
+                    key={comment._id}
+                    id={comment._id}
+                    user={user}
+                    handleDeleteComment={handleDeleteComment}
+                  />
+                ))}
+              </div>
+            ) : (
+              "No Comments"
+            )}
+          </section>
+        </div>
       ) : (
         ""
       )}
