@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ProfileImage from "../../Assets/Profile Image.png";
 import CommentButton from "../../Assets/Comment Button.png";
 import SaveButton from "../../Assets/Save button.png";
 import "./Post.css";
+import { getPostFromId } from "../../services/posts-api";
 
-const Post = ({ post }) => {
+const Post = ({ id, user, handleDeletePost }) => {
+  const [post, setPost] = useState();
+
+  useEffect(() => {
+    getPostInfo(id);
+  }, [id]);
+
+  const getPostInfo = async (postId) => {
+    const postInfo = await getPostFromId(postId);
+    setPost(postInfo);
+  };
+
   return (
     <>
       {post ? (
         <section className="post">
           <div className="posted-user-details">
             <div>
+            <Link className="post-link" to={`/user/${post.postedBy._id}`}>
               <img src={ProfileImage} alt="avatar" className="avatar" />
               <div>
                 <p className="user-details">{post.postedBy.name}</p>
@@ -19,15 +32,27 @@ const Post = ({ post }) => {
                   {post.postedBy.cohort ? post.postedBy.cohort : "no coh"}
                 </p>
               </div>
+            </Link>
             </div>
-            <div className="post-delete-btn"><i className="far fa-trash-alt"></i></div>
+
+            {user._id === post.postedBy._id ? (
+              <div
+                className="post-delete-btn"
+                onClick={() => handleDeletePost(post._id)}
+              >
+                <i className="far fa-trash-alt"></i>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           <div className="message">
             <p>{post.message}</p>
           </div>
           <div className="post-bottom-section">
             <div className="post-line"></div>
-            <i className="far fa-bookmark fa-3x"></i>
+            <img src={SaveButton} alt="Save Button" className="save-post-btn" />
+
             <Link to={`/post/${post._id}`}>
               <img
                 src={CommentButton}
@@ -38,7 +63,8 @@ const Post = ({ post }) => {
           </div>
           <div className="reply-amount">
             <img src={ProfileImage} alt="avatar" className="avatar-bottom" />
-            <p>12 replies</p>
+            {/* need to pass down replies  */}
+            <p>{post.comments.length} replies</p>
           </div>
         </section>
       ) : (

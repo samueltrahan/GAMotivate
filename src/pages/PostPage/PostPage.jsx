@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
-import Comments from "../../components/Comments/Comments";
-
+import Comment from "../../components/Comment/Comment";
 import { getPostFromId } from "../../services/posts-api";
 import * as commentAPI from "../../services/comments-api";
+import ProfileImage from "../../Assets/Profile Image.png";
 import "./PostPage.css";
-
 const PostPage = ({ posts, user }) => {
-  const [currentPost, setCurrentPost] = useState([]);
   const { id } = useParams();
+  const [post, setPost] = useState(posts.filter((post) => post._id === id));
   const [comment, setComment] = useState({
     message: "",
     postedBy: user._id,
   });
 
   useEffect(() => {
-    getPost();
-  }, []);
+    getPostInfo(id);
+  }, [id]);
 
-  const getPost = async () => {
-    const newPost = await getPostFromId(id);
-    setCurrentPost(newPost);
+  const getPostInfo = async (postId) => {
+    const postInfo = await getPostFromId(postId);
+    setPost(postInfo);
   };
 
   const handleCommentChange = (e) => {
@@ -35,38 +33,109 @@ const PostPage = ({ posts, user }) => {
     e.preventDefault();
     if (comment.message) {
       try {
-        await commentAPI.create(comment, id);
-        getPost();
+        const newComment = await commentAPI.create(comment, id);
+        setComment({ ...comment, message: "" });
+        setPost({
+          ...post,
+          comments: [...post.comments, newComment],
+        });
       } catch (err) {
         console.log(err);
       }
     }
   };
 
+  const handleDeleteComment = async (commentId) => {
+    try {
+      const deletedComment = await commentAPI.deleteComment(commentId);
+      setPost({
+        ...post,
+        comments: post.comments.filter(
+          (comment) => comment._id !== deletedComment._id
+        ),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
-      {currentPost ? (
-        <section className="thread">
-          <div className="user-info">User Info</div>
-          <div className="thread-container">
-            {/* <h1>GA MOTIVATE</h1> */}
-            <h1>{currentPost.message}</h1>
-            <form onSubmit={handleCommentSubmit}>
-              <textarea
-                placeholder="Post a question or something that motivates you"
-                name="message"
-                onChange={handleCommentChange}
-                value={comment.message}
-              ></textarea>
-              <button>Post</button>
-            </form>
+      {typeof post.postedBy === "object" ? (
+        <div className="postPage">
+          <div className="profile-section">
+            <div className="profile-card">
+              <i className="fad fa-user-circle fa-10x"></i>
+              <p>Name</p>
+              <p>Cohort</p>
+            </div>
           </div>
-          <Comments comments={currentPost.comments} />
-        </section>
+          <section className="post-page-form">
+            <div className="thread-container">
+              <section className="post-page">
+                <div className="posted-user-details">
+                  <div>
+                    <img
+                      src={ProfileImage}
+                      alt="avatar"
+                      className="post-page-avatar"
+                    />
+                    <div>
+                      <p className="post-page-name">{post.postedBy.name}</p>
+                      <p className="user-details">
+                        {post.postedBy.cohort ? post.postedBy.cohort : "no coh"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="message">
+                  <p>{post.message}</p>
+                </div>
+              </section>
+              <div className="post-page-line"></div>
+              {post.comments ? (
+                <div className="comments">
+                  {post.comments.map((comment) => (
+                    <Comment
+                      key={comment._id}
+                      id={comment._id}
+                      user={user}
+                      handleDeleteComment={handleDeleteComment}
+                    />
+                  ))}
+                </div>
+              ) : (
+                "No Comments"
+              )}
+              {user ? (
+                <form onSubmit={handleCommentSubmit}>
+                  {post.comments.length > 0 ? (
+                    <div className="post-page-line"></div>
+                  ) : (
+                    ""
+                  )}
+                  <div className="main-post-page">
+                    <textarea
+                      className="post-page-input"
+                      placeholder="Post a question or something that motivates you"
+                      name="message"
+                      onChange={handleCommentChange}
+                      value={comment.message}
+                    ></textarea>
+                  </div>
+                  <button className="post-page-btn">Post</button>
+                </form>
+              ) : (
+                ""
+              )}
+            </div>
+          </section>
+        </div>
       ) : (
         ""
       )}
     </>
   );
 };
+
 export default PostPage;

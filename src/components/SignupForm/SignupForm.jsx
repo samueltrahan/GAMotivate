@@ -1,10 +1,9 @@
 import React, { useState } from "react"
 import "./SignUpForm.css"
-import { Link } from "react-router-dom"
 
 import userService from "../../services/userService"
 
-const SignupForm = ({ history, handleSignupOrLogin, updateMessage }) => {
+const SignupForm = ({ history, handleSignupOrLogin }) => {
     const [signupInfo, setSignupInfo] = useState({
         name: "",
         email: "",
