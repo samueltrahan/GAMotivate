@@ -9,6 +9,7 @@ import SignUpLandingPage from "../LandingPage/SignUpLandingPage";
 import PostPage from "../PostPage/PostPage";
 import UserPage from "../UserPage/UserPage";
 import EditUserPage from "../EditUserPage/EditUserPage";
+import ProfileCard from '../../components/ProfileCard/ProfileCard';
 
 import * as postsAPI from "../../services/posts-api";
 import userService from "../../services/userService";
@@ -75,11 +76,7 @@ const App = () => {
               <NavBar user={user} handleLogout={handleLogout} />
               <div className="feed-page">
                 <div className="profile-section">
-                  <div className="profile-card">
-                    <i className="fad fa-user-circle fa-10x"></i>
-                    <p>Name</p>
-                    <p>Cohort</p>
-                  </div>
+               <ProfileCard user={user}/>
                 </div>
                 <div className="post-section">
               <Posts user={user} posts={posts} setPosts={setPosts} />
