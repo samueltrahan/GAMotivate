@@ -86,8 +86,7 @@ const PostPage = ({ posts, user }) => {
                                 alt="avatar"
                                 className="avatar"
                             />
-                            <p className="user-details">{currentPost.postedBy.name}</p>
-                            <p className="user-details">{currentPost.postedBy.cohort}</p>
+                            
                             
                             <h1>{currentPost.message}</h1>
                             {currentPost.comments ? (
