@@ -11,18 +11,16 @@
 }
 
 .post-container {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
   margin: 0 auto;
-  width: 50%;
+  width: 55vw;
+  border-radius: 5px;
 }
 
 .main-post {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60vw;
+  width: 55vw;
   height: 70px;
 }
 
@@ -48,4 +46,6 @@
 .post-input {
   height: 120px;
   border-radius: 5px;
+  border: 0.5px solid lightgray;
+  box-shadow: 0.5px 0.5px 1px 1px #ccc;
 }

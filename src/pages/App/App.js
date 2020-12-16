@@ -88,15 +88,22 @@ const App = () => {
             </div>
           )}
         ></Route>
+
         <Route
           exact
           path="/user/:id"
           render={() => <UserPage user={user} />}
         ></Route>
+
         <Route
           exact
           path="/post/:id"
-          render={() => <PostPage user={user} posts={posts} />}
+          render={() => (
+            <>
+              <NavBar user={user} handleLogout={handleLogout} />
+              <PostPage user={user} posts={posts} />
+            </>
+          )}
         ></Route>
       </Switch>
     </>
