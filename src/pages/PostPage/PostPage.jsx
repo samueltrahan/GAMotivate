@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
 import Comment from "../../components/Comment/Comment";
-
 import { getPostFromId } from "../../services/posts-api";
 import * as commentAPI from "../../services/comments-api";
+import ProfileImage from "../../Assets/Profile Image.png";
 import "./PostPage.css";
-
 const PostPage = ({ posts, user }) => {
   const { id } = useParams();
   const [currentPost, setCurrentPost] = useState(
@@ -16,24 +14,20 @@ const PostPage = ({ posts, user }) => {
     message: "",
     postedBy: user._id,
   });
-
   useEffect(() => {
     getPost(id);
   }, [id]);
-
   const getPost = async (postId) => {
     const newPost = await getPostFromId(postId);
     console.log(newPost, "post");
     setCurrentPost(newPost);
   };
-
   const handleCommentChange = (e) => {
     setComment({
       ...comment,
       [e.target.name]: e.target.value,
     });
   };
-
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (comment.message) {
@@ -49,7 +43,6 @@ const PostPage = ({ posts, user }) => {
       }
     }
   };
-
   const handleDeleteComment = async (commentId) => {
     try {
       const deletedComment = await commentAPI.deleteComment(commentId);
@@ -63,12 +56,10 @@ const PostPage = ({ posts, user }) => {
       console.log(err);
     }
   };
-
-  console.log(currentPost);
-
+  console.log("current Post ====>>> ", currentPost);
   return (
     <>
-      {currentPost ? (
+      {currentPost.postedBy._id === user._id ? (
         <div className="postPage">
           <div className="profile-section">
             <div className="profile-card">
@@ -79,8 +70,24 @@ const PostPage = ({ posts, user }) => {
           </div>
           <section className="post-page-form">
             <div className="thread-container">
-              <h1 className="post-title">MOTIVATE</h1>
+              <img src={ProfileImage} alt="avatar" className="avatar" />
+              {/* <p>{currentPost.postedBy.name}</p>*/}
+              <p>{currentPost.postedBy.name}</p>
               <h1>{currentPost.message}</h1>
+              {currentPost.comments ? (
+                <div className="comments">
+                  {currentPost.comments.map((comment) => (
+                    <Comment
+                      key={comment._id}
+                      id={comment._id}
+                      user={user}
+                      handleDeleteComment={handleDeleteComment}
+                    />
+                  ))}
+                </div>
+              ) : (
+                "No Comments"
+              )}
               {user ? (
                 <form onSubmit={handleCommentSubmit}>
                   <div className="main-post-page">
@@ -98,20 +105,6 @@ const PostPage = ({ posts, user }) => {
                 ""
               )}
             </div>
-            {currentPost.comments ? (
-              <div className="comments">
-                {currentPost.comments.map((comment) => (
-                  <Comment
-                    key={comment._id}
-                    id={comment._id}
-                    user={user}
-                    handleDeleteComment={handleDeleteComment}
-                  />
-                ))}
-              </div>
-            ) : (
-              "No Comments"
-            )}
           </section>
         </div>
       ) : (
