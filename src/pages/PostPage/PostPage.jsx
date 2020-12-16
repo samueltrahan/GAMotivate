@@ -49,7 +49,7 @@ const PostPage = ({ posts, user }) => {
             }
         }
     }
-  };
+
 
     const handleDeleteComment = async (commentId) => {
         try {
@@ -112,4 +112,5 @@ const PostPage = ({ posts, user }) => {
         </>
     )
 }
+
 export default PostPage

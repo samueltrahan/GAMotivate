@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 
 import Posts from '../../components/Posts/Posts';
@@ -14,6 +14,7 @@ import UserPage from "../UserPage/UserPage";
 import ProfileImage from '../../Assets/Profile Image.png';
 
 import PostPage from '../PostPage/PostPage';
+import EditUserPage from '../EditUserPage/EditUserPage';
 
 import "./App.css";
 
@@ -106,6 +107,15 @@ const App = () => {
             </>
           )}
         ></Route>
+        <Route exact path='/user/:id/edit' render={() =>
+          <>
+          {user ?
+            <EditUserPage user={user}/>
+            :
+            <Redirect to='/login'/>
+          }
+          </>
+        }></Route>
       </Switch>
       
     </>

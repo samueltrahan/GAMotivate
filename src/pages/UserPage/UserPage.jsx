@@ -23,13 +23,13 @@ export default function UserPage() {
       <div className="User">
         <div className="inner-div">
           <div className="background-color-div">
-            <img src="img" alt="img"/><br/>
-            <Link className="edit" to={`/user/${account._id}/edit`}>Edit Profile</Link><br/>
-            <p><b>{account.name}</b></p><br/>
-            <p>{account.job}</p><br/>
-            <p><b>{account.cohort}</b></p><br/>
-            <p><b>{account.status}</b></p><br/>
-            <p>{account.location}</p><br/>
+            <img src="img" className="profile-img" alt="img"/><br/>
+            <Link className="edit-button" to={`/user/${account._id}/edit`}>Edit Profile</Link><br/>
+            <p className="name"><b>{account.name}</b></p><br/>
+            {account.job}<br/>
+            <b>{account.cohort}</b><br/>
+            <b>{account.status}</b><br/>
+            {account.location}<br/>
           </div>
           <div className="imgs">
             <img src="https://i.imgur.com/fm34YyM.png" width="18" alt="world"/>              <a href="#portfolio" target="_blank" >Portfolio link</a><br/>
