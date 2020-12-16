@@ -68,6 +68,10 @@ const App = () => {
           <UserPage user={user}/>
                   }>
         </Route>
+        <Route exact path="/user/:id/edit" render={() => 
+          <EditUserPage user={user}/>
+                  }>
+        </Route>
       </Switch>
       
     </>
