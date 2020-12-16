@@ -1,6 +1,7 @@
 .User {
-    float: left;
-    margin: 80px 0px 80px 100px;
+    display: flex;
+    justify-content: center;
+    margin: 80px 0px 80px 0px;    
 }
 
 .background-color-div {

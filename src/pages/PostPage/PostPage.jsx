@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
 
 import Comment from "../../components/Comment/Comment"
 
-import { getPostFromId } from "../../services/posts-api";
-import * as commentAPI from "../../services/comments-api";
-import "./PostPage.css";
+import { getPostFromId } from "../../services/posts-api"
+import * as commentAPI from "../../services/comments-api"
+import "./PostPage.css"
 
 const PostPage = ({ posts, user }) => {
     const { id } = useParams()
@@ -27,12 +27,12 @@ const PostPage = ({ posts, user }) => {
         setCurrentPost(newPost)
     }
 
-  const handleCommentChange = (e) => {
-    setComment({
-      ...comment,
-      [e.target.name]: e.target.value,
-    });
-  };
+    const handleCommentChange = (e) => {
+        setComment({
+            ...comment,
+            [e.target.name]: e.target.value,
+        })
+    }
 
     const handleCommentSubmit = async (e) => {
         e.preventDefault()
@@ -48,8 +48,7 @@ const PostPage = ({ posts, user }) => {
                 console.log(err)
             }
         }
-    };
-  
+    }
 
     const handleDeleteComment = async (commentId) => {
         try {
