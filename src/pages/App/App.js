@@ -9,6 +9,7 @@ import SignUpLandingPage from "../LandingPage/SignUpLandingPage";
 import PostPage from "../PostPage/PostPage";
 import UserPage from "../UserPage/UserPage";
 import EditUserPage from "../EditUserPage/EditUserPage";
+import ProfileCard from '../../components/ProfileCard/ProfileCard';
 
 import * as postsAPI from "../../services/posts-api";
 import userService from "../../services/userService";
