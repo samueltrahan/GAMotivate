@@ -20,7 +20,9 @@ const Post = ({ post, user }) => {
                 </p>
               </div>
             </div>
-            {user ? <div className="post-delete-btn">x</div> : ""}
+
+            {user ? <div className="post-delete-btn"><i className="far fa-trash-alt"></i></div> : ""}
+
           </div>
           <div className="message">
             <p>{post.message}</p>
@@ -28,6 +30,7 @@ const Post = ({ post, user }) => {
           <div className="post-bottom-section">
             <div className="post-line"></div>
             <img src={SaveButton} alt="Save Button" className="save-post-btn" />
+
             <Link to={`/post/${post._id}`}>
               <img
                 src={CommentButton}
