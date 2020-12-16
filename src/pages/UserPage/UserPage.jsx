@@ -3,7 +3,7 @@ import userService from "../../services/userService"
 import "./UserPage.css"
 import { useParams, Link } from "react-router-dom"
 import ProfileImage from "../../Assets/Profile Image.png"
-import ProfileCard from '../../components/ProfileCard/ProfileCard';
+import ProfileCard from "../../components/ProfileCard/ProfileCard"
 
 export default function UserPage({ user, posts }) {
     const { id } = useParams()
@@ -20,62 +20,64 @@ export default function UserPage({ user, posts }) {
 
     return (
         <div className="User">
-          <div>
-          </div>
+            <div></div>
             <div className="inner-div">
-                
-              <ProfileCard user={account} />
+                <ProfileCard user={account} />
                 <div className="user-links">
                     <i className="fas fa-globe-americas fa-2x"></i>&nbsp;
-                    <a href={account.porfolio} rel="noreferrer" target="_blank">
+                    <a
+                        href={account.portfolio}
+                        rel="noreferrer"
+                        target="_blank"
+                    >
                         Portfolio link
                     </a>
-                   &nbsp;&nbsp;
+                    &nbsp;&nbsp;
                     <i className="fab fa-linkedin fa-2x"></i> &nbsp;
                     <a href={account.linkedin} rel="noreferrer" target="_blank">
                         LinkedIn link
                     </a>
                 </div>
+                <Link to={`/user/${user._id}/edit`}>Edit Profile</Link>
             </div>
             <div className="user-posts">
-              <h1 className="user-post-header">{account.name}'s Posts</h1>
-            {posts
-                ? posts
-                      .filter((post) => post.postedBy._id === account._id)
-                      .map((post) => (
-                          <section className="post">
-                              <div className="posted-user-details">
-                                  <div>
-                                      <img
-                                          src={ProfileImage}
-                                          alt="avatar"
-                                          className="avatar"
-                                      />
+                <h1 className="user-post-header">{account.name}'s Posts</h1>
+                {posts
+                    ? posts
+                          .filter((post) => post.postedBy._id === account._id)
+                          .map((post) => (
+                              <section className="post" key={post._id}>
+                                  <div className="posted-user-details">
                                       <div>
-                                          <p className="user-details">
-                                              {post.postedBy.name}
-                                          </p>
-                                          <p className="user-details">
-                                              {post.postedBy.cohort
-                                                  ? post.postedBy.cohort
-                                                  : "no coh"}
-                                          </p>
+                                          <img
+                                              src={ProfileImage}
+                                              alt="avatar"
+                                              className="avatar"
+                                          />
+                                          <div>
+                                              <p className="user-details">
+                                                  {post.postedBy.name}
+                                              </p>
+                                              <p className="user-details">
+                                                  {post.postedBy.cohort
+                                                      ? post.postedBy.cohort
+                                                      : "no coh"}
+                                              </p>
+                                          </div>
                                       </div>
                                   </div>
-                              </div>
-                              <div className="message">
-                                  <p>{post.message}</p>
-                              </div>
-                              <div className="post-bottom-section">
-                                  <div className="post-line"></div>
-                              </div>
-                              <div className="reply-amount">
-                                  
-                                  <p>{post.comments.length} replies</p>
-                              </div>
-                          </section>
-                      ))
-                : ""}
+                                  <div className="message">
+                                      <p>{post.message}</p>
+                                  </div>
+                                  <div className="post-bottom-section">
+                                      <div className="post-line"></div>
+                                  </div>
+                                  <div className="reply-amount">
+                                      <p>{post.comments.length} replies</p>
+                                  </div>
+                              </section>
+                          ))
+                    : ""}
             </div>
         </div>
     )
