@@ -10,6 +10,7 @@ import SignUpLandingPage from '../LandingPage/SignUpLandingPage'
 import * as postsAPI from "../../services/posts-api"
 import userService from "../../services/userService";
 import UserPage from "../UserPage/UserPage";
+import EditUserPage from "../EditUserPage/EditUserPage"
 
 import "./App.css";
 

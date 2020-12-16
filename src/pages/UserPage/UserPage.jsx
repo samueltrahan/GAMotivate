@@ -1,23 +1,20 @@
-import React, {useState, useEffect} from 'react';
-import userService from '../../services/userService';
-import "./UserPage.css";
-import {useParams, Link} from 'react-router-dom';
-
+import React, { useState, useEffect } from "react"
+import userService from "../../services/userService"
+import "./UserPage.css"
+import { useParams, Link } from "react-router-dom"
 
 export default function UserPage() {
-  const [account, setAccount] = useState({})
-  const { id } = useParams();
-  useEffect(() =>{
-    getAccount()
-  }, [])
+    const [account, setAccount] = useState({})
+    const { id } = useParams()
+    useEffect(() => {
+        getAccount()
+    }, [])
 
-  const getAccount = async () => {
-    const newAccount = await userService.getUserFromId(
-      id
-    )
-    console.log(newAccount)
-    setAccount(newAccount)
-  }
+    const getAccount = async () => {
+        const newAccount = await userService.getUserFromId(id)
+        console.log(newAccount)
+        setAccount(newAccount)
+    }
 
   return (
       <div className="User">

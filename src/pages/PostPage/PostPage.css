@@ -1,0 +1,32 @@
+.thread {
+    margin: 10px 80px;
+    display: flex;
+    flex-direction: column;
+}
+.user-info {
+    width: 150px;
+    height: 300px;
+    background-color: green;
+}
+.thread-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-left: 20px;
+}
+.thread-container > h1 {
+    margin: 0;
+}
+.thread-container > textarea {
+    border-radius: 5px;
+    /* max-width: 60%; */
+    height: 50%;
+}
+.post-button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.postPage {
+    display: flex;
+}

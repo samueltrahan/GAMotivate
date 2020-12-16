@@ -1,7 +1,6 @@
 .User {
-    display: flex;
-    justify-content: center;
-    margin: 80px 0px 80px 0px;    
+    float: left;
+    margin: 80px 0px 80px 100px;
 }
 
 .background-color-div {
@@ -22,9 +21,9 @@ img {
     border-radius: 50%;
 }
 
-.edit {
+.edit-button {
     background-color: #fa4542;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     border-radius: 12px;
     color: white;
     padding: 20px 30px 20px 30px;
