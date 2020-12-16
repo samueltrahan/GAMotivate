@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 
 import Posts from "../../components/Posts/Posts";
@@ -41,8 +41,11 @@ const App = () => {
   return (
     <>
       <Switch>
+        <Route exact path='/'>
+          <Redirect to='/login'/>
+        </Route>
+        
         <Route
-          exact
           path="/login"
           render={({ history }) => (
             <>
@@ -53,21 +56,9 @@ const App = () => {
        
         <Route
           exact
-          path="/signup"
-          render={({ history }) => (
-            <>
-              <SignUpLandingPage
-                history={history}
-                handleSignupOrLogin={handleSignupOrLogin}
-              />
-            </>
-          )}
-        ></Route>
-
-        <Route
-          exact
           path="/posts"
           render={() => (
+            user ?
             <div>
               <NavBar user={user} handleLogout={handleLogout} />
               <div className="feed-page">
@@ -83,22 +74,33 @@ const App = () => {
                 </div>
               </div>
             </div>
+            :''
           )}
         ></Route>
 
         <Route
           exact
           path="/user/:id"
-          render={() => <UserPage user={user} />}
-        ></Route>
+          render={() => 
+            <>
+              {user ?
+                <UserPage user={user} posts={posts}/>
+              :''}
+            </>
+        }></Route>
 
         <Route
           exact
           path="/post/:id"
           render={() => (
             <>
-              <NavBar user={user} handleLogout={handleLogout} />
-              <PostPage user={user} posts={posts} />
+              {user ?
+                <>
+                  <NavBar user={user} handleLogout={handleLogout} />
+                  <PostPage user={user} posts={posts} />
+                </>
+                :''
+              }
             </>
           )}
         ></Route>
