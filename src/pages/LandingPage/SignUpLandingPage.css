@@ -9,6 +9,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+   
+    font-weight: bold;
+    font-family: "Montserrat", sans-serif;
+    text-shadow: 1px 1px black;
+    margin-left: 75px;
 }
 
 .sign-up-form {
@@ -17,4 +22,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.content {
+    font-size: 18px;
 }
