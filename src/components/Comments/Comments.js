@@ -10,3 +10,5 @@ const Comments = ({post}) => {
         </>
     )
 }
+
+export default Comments
