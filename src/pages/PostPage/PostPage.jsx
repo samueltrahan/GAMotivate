@@ -7,48 +7,50 @@ import ProfileImage from "../../Assets/Profile Image.png";
 import "./PostPage.css";
 const PostPage = ({ posts, user }) => {
   const { id } = useParams();
-  const [currentPost, setCurrentPost] = useState(
-    posts.filter((post) => post._id === id)
-  );
+  const [post, setPost] = useState(posts.filter((post) => post._id === id));
   const [comment, setComment] = useState({
     message: "",
     postedBy: user._id,
   });
+
   useEffect(() => {
-    getPost(id);
+    getPostInfo(id);
   }, [id]);
-  const getPost = async (postId) => {
-    const newPost = await getPostFromId(postId);
-    console.log(newPost, "post");
-    setCurrentPost(newPost);
+
+  const getPostInfo = async (postId) => {
+    const postInfo = await getPostFromId(postId);
+    setPost(postInfo);
   };
+
   const handleCommentChange = (e) => {
     setComment({
       ...comment,
       [e.target.name]: e.target.value,
     });
   };
+
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (comment.message) {
       try {
         const newComment = await commentAPI.create(comment, id);
         setComment({ ...comment, message: "" });
-        setCurrentPost({
-          ...currentPost,
-          comments: [...currentPost.comments, newComment],
+        setPost({
+          ...post,
+          comments: [...post.comments, newComment],
         });
       } catch (err) {
         console.log(err);
       }
     }
   };
+
   const handleDeleteComment = async (commentId) => {
     try {
       const deletedComment = await commentAPI.deleteComment(commentId);
-      setCurrentPost({
-        ...currentPost,
-        comments: currentPost.comments.filter(
+      setPost({
+        ...post,
+        comments: post.comments.filter(
           (comment) => comment._id !== deletedComment._id
         ),
       });
@@ -56,10 +58,10 @@ const PostPage = ({ posts, user }) => {
       console.log(err);
     }
   };
-  console.log("current Post ====>>> ", currentPost);
+
   return (
     <>
-      {currentPost.postedBy._id === user._id ? (
+      {typeof post.postedBy === "object" ? (
         <div className="postPage">
           <div className="profile-section">
             <div className="profile-card">
@@ -70,13 +72,26 @@ const PostPage = ({ posts, user }) => {
           </div>
           <section className="post-page-form">
             <div className="thread-container">
-              <img src={ProfileImage} alt="avatar" className="avatar" />
-              {/* <p>{currentPost.postedBy.name}</p>*/}
-              <p>{currentPost.postedBy.name}</p>
-              <h1>{currentPost.message}</h1>
-              {currentPost.comments ? (
+              <section className="post-page">
+                <div className="posted-user-details">
+                  <div>
+                    <img src={ProfileImage} alt="avatar" className="avatar" />
+                    <div>
+                      <p className="user-details">{post.postedBy.name}</p>
+                      <p className="user-details">
+                        {post.postedBy.cohort ? post.postedBy.cohort : "no coh"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="message">
+                  <p>{post.message}</p>
+                </div>
+              </section>
+              <div className="post-page-line"></div>
+              {post.comments ? (
                 <div className="comments">
-                  {currentPost.comments.map((comment) => (
+                  {post.comments.map((comment) => (
                     <Comment
                       key={comment._id}
                       id={comment._id}
@@ -90,6 +105,7 @@ const PostPage = ({ posts, user }) => {
               )}
               {user ? (
                 <form onSubmit={handleCommentSubmit}>
+                  <div className="post-page-line"></div>
                   <div className="main-post-page">
                     <textarea
                       className="post-page-input"
@@ -113,4 +129,5 @@ const PostPage = ({ posts, user }) => {
     </>
   );
 };
+
 export default PostPage;

@@ -3,8 +3,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 50px;
+  margin: 80px;
 }
+
 .main-post-page {
   display: flex;
   align-items: center;
@@ -19,6 +20,7 @@
   border-radius: 5px;
   border: 0.5px solid lightgray;
   box-shadow: 0.5px 0.5px 1px 1px #ccc;
+  margin-top: 20px;
 }
 .post-page-btn {
   display: flex;
@@ -46,7 +48,7 @@
 .postPage {
   display: flex;
 }
-.post {
+.post-page {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -54,13 +56,19 @@
   border: 0.5px solid lightgray;
   border-radius: 5px;
   box-shadow: 0.5px 0.5px 1px 1px #ccc;
-  margin: 15px 0;
   width: 100%;
 }
 .message {
   width: 70%;
   margin: 0 auto;
+  font-size: 30px;
 }
+
+.comment-message {
+  width: 70%;
+  margin: 0 auto;
+}
+
 .posted-user-details {
   height: 5%;
   width: 100%;
@@ -97,27 +105,9 @@
   flex-direction: row;
   margin-left: 50px;
 }
-.post-line {
-  width: 74%;
-  height: 1px;
-  background-color: black;
-}
-.post-delete-btn {
-  margin: 5px 5px 8px 8px;
-  color: red;
-  font-size: 20px;
-  font-weight: bold;
-  width: 20px;
-  height: 20px;
-}
-.comment-btn {
-  width: 45px;
-  height: 45px;
-  margin: 10px;
-}
-.save-post-btn {
-  width: 20px;
-  height: 30px;
-  margin: 5px 0 5px 20px;
-  border-radius: 0;
+.post-page-line {
+  width: 100%;
+  height: 2px;
+  background-color: rgb(169, 169, 169);
+  margin: 20px 0;
 }
