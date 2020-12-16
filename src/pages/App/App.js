@@ -89,7 +89,7 @@ const App = () => {
                 </div>
               </div>
             </div>
-            :''
+            :<Redirect to='/login'/>
           )}
         ></Route>
 
@@ -100,7 +100,8 @@ const App = () => {
             <>
               {user ?
                 <UserPage user={user} posts={posts}/>
-              :''}
+                :<Redirect to='/login'/>
+              }
             </>
         }></Route>
 
@@ -114,7 +115,7 @@ const App = () => {
                   <NavBar user={user} handleLogout={handleLogout} />
                   <PostPage user={user} posts={posts} />
                 </>
-                :''
+                :<Redirect to='/login'/>
               }
             </>
           )}
