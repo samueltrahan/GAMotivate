@@ -6,17 +6,19 @@ const Post = ({ post }) => {
   return (
     <>
       {post ? (
-        <section className="post">
+        <div className="post">
           <div>
             <img src="" alt="avatar" />
-            <p>{post.name}</p>
-            <p>{post.cohort ? post.cohort : "no cohort"}</p>
+            <p>Adam</p>
+            <p>SEI</p>
           </div>
           <div className="message">
-            <p>{post.message}</p>
+            <p>
+              I feel <strong>great</strong> because I got a job today!
+            </p>
           </div>
           <Link to={`/post/${post._id}`}>Reply</Link>
-        </section>
+        </div>
       ) : (
         ""
       )}

@@ -68,8 +68,7 @@ const Posts = ({ user, posts, getPosts }) => {
       ) : (
         ""
       )}
-      <h1>Post Feed</h1>
-      {posts ? showPosts : ""}
+      {posts ? <section className="post-container">{showPosts}</section> : ""}
     </>
   );
 };
