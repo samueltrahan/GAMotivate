@@ -5,7 +5,7 @@ import CommentButton from "../../Assets/Comment Button.png";
 import SaveButton from "../../Assets/Save button.png";
 import "./Post.css";
 
-const Post = ({ post }) => {
+const Post = ({ post, user }) => {
   return (
     <>
       {post ? (
@@ -20,14 +20,17 @@ const Post = ({ post }) => {
                 </p>
               </div>
             </div>
-            <div className="post-delete-btn"><i className="far fa-trash-alt"></i></div>
+
+            {user ? <div className="post-delete-btn"><i className="far fa-trash-alt"></i></div> : ""}
+
           </div>
           <div className="message">
             <p>{post.message}</p>
           </div>
           <div className="post-bottom-section">
             <div className="post-line"></div>
-            <i className="far fa-bookmark fa-3x"></i>
+            <img src={SaveButton} alt="Save Button" className="save-post-btn" />
+
             <Link to={`/post/${post._id}`}>
               <img
                 src={CommentButton}
@@ -38,6 +41,7 @@ const Post = ({ post }) => {
           </div>
           <div className="reply-amount">
             <img src={ProfileImage} alt="avatar" className="avatar-bottom" />
+            {/* need to pass down replies  */}
             <p>12 replies</p>
           </div>
         </section>
