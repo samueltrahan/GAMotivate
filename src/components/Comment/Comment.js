@@ -13,8 +13,8 @@ const Comment = ({id, handleDeleteComment, user}) => {
     }, [id])
 
     const getCommentInfo = async (commentId) => {
-        const comment = await getComment(commentId)
-        setComment(comment)
+        const commentInfo = await getComment(commentId)
+        setComment(commentInfo)
     }
 
     return (
@@ -26,10 +26,10 @@ const Comment = ({id, handleDeleteComment, user}) => {
             <img src={ProfileImage} alt="avatar" className="avatar" />
             
             
-                 <p className="user-details">{comment.postedBy.name}</p>
+                <p className="user-details">{comment.postedBy.name}</p>
                 <p className="user-details">
                   {comment.postedBy.cohort ? comment.postedBy.cohort : "no coh"}
-                </p> 
+                </p>
               </div>
                 <p className="message">{comment.message}</p>
                 {comment.postedBy._id === user._id ?
