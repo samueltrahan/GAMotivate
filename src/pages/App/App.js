@@ -7,10 +7,11 @@ import Posts from "../../components/Posts/Posts";
 import LoginLandingPage from "../LandingPage/LoginLandingPage";
 import SignUpLandingPage from "../LandingPage/SignUpLandingPage";
 import PostPage from "../PostPage/PostPage";
+import UserPage from "../UserPage/UserPage";
+import EditUserPage from "../EditUserPage/EditUserPage";
 
 import * as postsAPI from "../../services/posts-api";
 import userService from "../../services/userService";
-import UserPage from "../UserPage/UserPage";
 
 import ProfileImage from '../../Assets/Profile Image.png';
 
@@ -46,6 +47,7 @@ const App = () => {
         </Route>
         
         <Route
+          exact
           path="/login"
           render={({ history }) => (
             <>
@@ -53,7 +55,17 @@ const App = () => {
                 history={history}
                 handleSignupOrLogin={handleSignupOrLogin}
               />
-       </>)} />
+            </>
+          )}
+        ></Route>
+
+        <Route exact path='/signup' render={({history}) => (
+          <>
+            <SignUpLandingPage history={history}
+            handleSignupOrLogin={handleSignupOrLogin}/>
+          </>
+        )}></Route>
+
         <Route
           exact
           path="/posts"
@@ -74,7 +86,8 @@ const App = () => {
                 </div>
               </div>
             </div>
-            :<Redirect to='/login'/>
+            :
+            <Redirect to='/login'/>
           )}
         ></Route>
 
@@ -85,9 +98,20 @@ const App = () => {
             <>
               {user ?
                 <UserPage user={user} posts={posts}/>
-                :<Redirect to='/login'/>
+                :
+                <Redirect to='/login'/>
               }
             </>
+        }></Route>
+
+        <Route exact path='/user/:id/edit' render={() =>
+          <>
+          {user ?
+            <EditUserPage user={user}/>
+            :
+            <Redirect to='/login'/>
+          }
+          </>
         }></Route>
 
         <Route
@@ -100,7 +124,8 @@ const App = () => {
                   <NavBar user={user} handleLogout={handleLogout} />
                   <PostPage user={user} posts={posts} />
                 </>
-                :<Redirect to='/login'/>
+                :
+                <Redirect to='/login'/>
               }
             </>
           )}
