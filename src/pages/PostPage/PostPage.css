@@ -11,6 +11,9 @@
     justify-content: center;
     width: 55vw;
     height: 70px;
+    padding-top: 75px;
+    padding-bottom: 75px;
+    
   }
   .post-page-input {
     height: 120px;
