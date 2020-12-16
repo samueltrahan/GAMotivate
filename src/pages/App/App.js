@@ -41,32 +41,31 @@ const App = () => {
     <>
       <Switch>
         <Route exact path="/login" render={({history}) => 
-          <>
           <LoginLandingPage 
               history={history}
               handleSignupOrLogin={handleSignupOrLogin}
-              />
-          </>
+          />
         }></Route>
 
         <Route exact path="/signup" render={({history}) => 
-          <>
             <SignUpLandingPage
               history={history}
               handleSignupOrLogin={handleSignupOrLogin}
             />
-          </>
         }></Route>
         
         <Route exact path="/posts" render={() => 
-          <div>
+          <>
             <NavBar user={user} handleLogout={handleLogout} />
             <Posts user={user} posts={posts} getPosts={getPosts}/>
-          </div>
+          </>
         }></Route>
 
         <Route exact path="/user/:id" render={() => 
-          <UserPage user={user}/>
+          <>
+            <NavBar user={user} handleLogout={handleLogout} />
+            <UserPage user={user}/>
+          </>
         }></Route>
 
         <Route exact path="/post/:id" render={() => 
