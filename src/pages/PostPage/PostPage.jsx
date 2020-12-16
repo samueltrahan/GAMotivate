@@ -17,7 +17,6 @@ const PostPage = ({ posts, user }) => {
     })
 
     useEffect(() => {
-        console.log(post)
         getPostInfo(id)
     }, [id])
 
