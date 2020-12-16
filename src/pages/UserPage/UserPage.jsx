@@ -79,7 +79,7 @@ export default function UserPage({ user, posts }) {
                 ? posts
                       .filter((post) => post.postedBy._id === account._id)
                       .map((post) => (
-                          <section className="post">
+                          <section className="post" key={post._id}>
                               <div className="posted-user-details">
                                   <div>
                                       <img

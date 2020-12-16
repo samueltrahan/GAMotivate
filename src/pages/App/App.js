@@ -116,9 +116,9 @@ const App = () => {
         <Route
           exact
           path="/user/:id/edit"
-          render={() => (
+          render={({history}) => (
             <>
-              {user ? <EditUserPage user={user} /> : <Redirect to="/login" />}
+              {user ? <EditUserPage history={history} user={user} /> : <Redirect to="/login" />}
             </>
           )}
         ></Route>
