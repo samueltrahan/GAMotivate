@@ -5,6 +5,7 @@ import Comment from "../../components/Comment/Comment"
 
 import { getPostFromId } from "../../services/posts-api"
 import * as commentAPI from "../../services/comments-api"
+import ProfileImage from "../../Assets/Profile Image.png"
 import "./PostPage.css"
 
 const PostPage = ({ posts, user }) => {
@@ -63,6 +64,7 @@ const PostPage = ({ posts, user }) => {
             console.log(err)
         }
     }
+    console.log(currentPost)
 
     return (
         <>
@@ -78,7 +80,15 @@ const PostPage = ({ posts, user }) => {
                     
                     <section className="post-page-form">
                         <div className="thread-container">
-                            {/* <h1>GA MOTIVATE</h1> */}
+                        
+                            <img
+                                src={ProfileImage}
+                                alt="avatar"
+                                className="avatar"
+                            />
+                            <p className="user-details">{currentPost.postedBy.name}</p>
+                            <p className="user-details">{currentPost.postedBy.cohort}</p>
+                            
                             <h1>{currentPost.message}</h1>
                             {currentPost.comments ? (
                             <div className="comments">
