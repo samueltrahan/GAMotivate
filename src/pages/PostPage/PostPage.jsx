@@ -82,13 +82,13 @@ const PostPage = ({ posts, user }) => {
                     />
                     <div>
                       <p className="post-page-name">{post.postedBy.name}</p>
-                      <p className="user-details">
+                      <p className="user-cohort">
                         {post.postedBy.cohort ? post.postedBy.cohort : "no coh"}
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="message">
+                <div className="post-page-message">
                   <p>{post.message}</p>
                 </div>
               </section>

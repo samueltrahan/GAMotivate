@@ -21,9 +21,9 @@ const Comment = ({ id, handleDeleteComment, user }) => {
       {comment ? (
         <>
           <img src={ProfileImage} alt="avatar" className="avatar" />
-          <div>
+          <div className="user-info-div">
             <p className="comment-name-details">{comment.postedBy.name}</p>
-            <p className="user-details">
+            <p className="user-cohort-detail">
               {comment.postedBy.cohort ? comment.postedBy.cohort : "no coh"}
             </p>
           </div>

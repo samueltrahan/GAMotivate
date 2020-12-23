@@ -24,15 +24,15 @@ const Post = ({ id, user, handleDeletePost }) => {
         <section className="post">
           <div className="posted-user-details">
             <div>
-            <Link className="post-link" to={`/user/${post.postedBy._id}`}>
-              <img src={ProfileImage} alt="avatar" className="avatar" />
-              <div>
-                <p className="user-details">{post.postedBy.name}</p>
-                <p className="user-details">
-                  {post.postedBy.cohort ? post.postedBy.cohort : "no coh"}
-                </p>
-              </div>
-            </Link>
+              <Link className="post-link" to={`/user/${post.postedBy._id}`}>
+                <img src={ProfileImage} alt="avatar" className="avatar" />
+                <div>
+                  <p className="user-post-name">{post.postedBy.name}</p>
+                  <p className="user-post-cohort">
+                    {post.postedBy.cohort ? post.postedBy.cohort : "no coh"}
+                  </p>
+                </div>
+              </Link>
             </div>
 
             {user._id === post.postedBy._id ? (

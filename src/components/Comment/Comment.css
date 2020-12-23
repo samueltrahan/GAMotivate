@@ -15,8 +15,18 @@
 
 .comment-name-details {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 15px;
   margin-bottom: 0;
+}
+
+.user-cohort-detail {
+  font-size: 12px;
+}
+
+.user-info-div {
+  border-right: 0.2px solid lightgray;
+  margin-right: 2px;
+  padding-right: 10px;
 }
 
 .comment-message {
