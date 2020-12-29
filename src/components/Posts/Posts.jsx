@@ -5,7 +5,7 @@ import Post from "../Post/Post"
 
 import "./PostForm.css"
 
-const Posts = ({ user, posts, setPosts }) => {
+const Posts = ({ user, posts, setPosts, getPosts }) => {
     const [message, setMessage] = useState({
         message: "",
         postedBy: user._id,
@@ -56,6 +56,7 @@ const Posts = ({ user, posts, setPosts }) => {
                 id={post._id}
                 user={user}
                 handleDeletePost={handleDeletePost}
+                posts={posts}
             />
         )
     })
@@ -77,6 +78,7 @@ const Posts = ({ user, posts, setPosts }) => {
     return (
         <>
             {user ? (
+                <>
                 <div className="post-form">
                     <form onSubmit={handleMessageSubmit}>
                         <h1 className="post-title">MOTIVATE</h1>
@@ -111,6 +113,10 @@ const Posts = ({ user, posts, setPosts }) => {
                         </div>
                     </form>
                 </div>
+                <div className="left">
+                    <button className="refresh-btn" onClick={() => getPosts()}><i className="fas fa-sync fa-1.5x"></i>&nbsp;Refresh</button>
+                </div>
+                </>
             ) : (
                 ""
             )}
