@@ -15,7 +15,7 @@
 
 .comment-name-details {
   font-weight: bold;
-  font-size: 15px;
+  font-size: 13px;
   margin-bottom: 0;
 }
 
@@ -26,7 +26,9 @@
 .user-info-div {
   border-right: 0.2px solid lightgray;
   margin-right: 2px;
-  padding-right: 10px;
+  padding-right: 5px;
+  min-width: 15%;
+  max-width: 15%;
 }
 
 .comment-message {

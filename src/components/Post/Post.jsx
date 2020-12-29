@@ -6,34 +6,33 @@ import SaveButton from "../../Assets/Save button.png";
 import "./Post.css";
 import { getPostFromId } from "../../services/posts-api";
 
-const Post = ({ id, user, handleDeletePost, posts }) => {
-
-
-
-let post = posts.filter(singlePost => singlePost._id === id)
-post = post[0]
-console.log(post)
+const Post = ({ id, singlePost, user, handleDeletePost, posts }) => {
   return (
     <>
-      {typeof post.postedBy === "object" ? (
+      {singlePost ? (
         <section className="post">
           <div className="posted-user-details">
             <div>
-              <Link className="post-link" to={`/user/${post.postedBy._id}`}>
+              <Link
+                className="post-link"
+                to={`/user/${singlePost.postedBy._id}`}
+              >
                 <img src={ProfileImage} alt="avatar" className="avatar" />
                 <div>
-                  <p className="user-post-name">{post.postedBy.name}</p>
+                  <p className="user-post-name">{singlePost.postedBy.name}</p>
                   <p className="user-post-cohort">
-                    {post.postedBy.cohort ? post.postedBy.cohort : "no coh"}
+                    {singlePost.postedBy.cohort
+                      ? singlePost.postedBy.cohort
+                      : "no coh"}
                   </p>
                 </div>
               </Link>
             </div>
 
-            {user._id === post.postedBy._id ? (
+            {user._id === singlePost.postedBy._id ? (
               <div
                 className="post-delete-btn"
-                onClick={() => handleDeletePost(post._id)}
+                onClick={() => handleDeletePost(singlePost._id)}
               >
                 <i className="far fa-trash-alt"></i>
               </div>
@@ -42,13 +41,13 @@ console.log(post)
             )}
           </div>
           <div className="message">
-            <p>{post.message}</p>
+            <p>{singlePost.message}</p>
           </div>
           <div className="post-bottom-section">
             <div className="post-line"></div>
             <img src={SaveButton} alt="Save Button" className="save-post-btn" />
 
-            <Link to={`/post/${post._id}`}>
+            <Link to={`/post/${singlePost._id}`}>
               <img
                 src={CommentButton}
                 alt="comment button"
@@ -59,7 +58,7 @@ console.log(post)
           <div className="reply-amount">
             <img src={ProfileImage} alt="avatar" className="avatar-bottom" />
             {/* need to pass down replies  */}
-            <p>{post.comments.length} replies</p>
+            <p>{singlePost.comments.length} replies</p>
           </div>
         </section>
       ) : (
