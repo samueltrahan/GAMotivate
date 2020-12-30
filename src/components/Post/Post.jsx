@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ProfileImage from "../../Assets/Profile Image.png";
 import CommentButton from "../../Assets/Comment Button.png";
 import SaveButton from "../../Assets/Save button.png";
 import "./Post.css";
-import { getPostFromId } from "../../services/posts-api";
 
-const Post = ({ id, singlePost, user, handleDeletePost, posts }) => {
+const Post = ({ singlePost, user, handleDeletePost }) => {
   return (
     <>
       {singlePost ? (
