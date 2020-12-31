@@ -11,9 +11,15 @@
 }
 
 .message {
-  max-width: 70%;
+  width: 70%;
   margin: 0 auto;
   word-break: break-word;
+  font-size: 18px;
+}
+
+.message > p {
+  width: 100%;
+  text-align: left;
 }
 
 .posted-user-details {
@@ -37,9 +43,19 @@
   align-items: center;
 }
 
-.user-details {
+.user-post-name {
   margin: 5px 0;
   text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(84, 84, 84);
+}
+
+.user-post-cohort {
+  margin: 0 0 5px 0;
+  text-decoration: none;
+  font-size: 15px;
+  color: rgb(84, 84, 84);
 }
 
 .avatar {
@@ -67,7 +83,7 @@
 }
 
 .post-delete-btn {
-  margin: 5px 5px 8px 8px;
+  margin: 8px 8px 8px 8px;
   color: red;
   font-size: 20px;
   font-weight: bold;
